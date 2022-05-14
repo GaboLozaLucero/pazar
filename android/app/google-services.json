@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "781606558945",
+    "project_id": "pazar-be6ed",
+    "storage_bucket": "pazar-be6ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781606558945:android:653558e77d54e58d21aba0",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "781606558945-o6rsp3bvgvies07tket5oc5cc700e3k1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAra7UJp8FAodU9N44MSvRNY2VvrjlpRxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "781606558945-o6rsp3bvgvies07tket5oc5cc700e3k1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

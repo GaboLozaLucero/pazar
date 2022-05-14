@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:get/get.dart';
-import 'package:project/constants/contant_colors.dart';
+import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
 
 class TextFieldPassword extends StatelessWidget {
@@ -17,6 +18,7 @@ class TextFieldPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = Get.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -44,10 +46,15 @@ class TextFieldPassword extends StatelessWidget {
               ),
             ),
             filled: true,
-            fillColor: ConstantColors.inputTextColor,
+            fillColor: ConstantColors.inputTextFieldColor,
             suffixIcon: Icon(icon, color: Colors.black,)
           ),
+          cursorHeight: SizeForm.cursorHeight,
+          cursorColor: ConstantColors.inputCursorColor,
           obscureText: true,
+        ),
+        SizedBox(
+          height: height * 0.02,
         ),
       ],
     );

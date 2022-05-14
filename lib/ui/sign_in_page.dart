@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project/constants/contant_colors.dart';
+import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
 import 'package:project/constants/widgets/button/custom_elevatedbutton.dart';
 import 'package:project/constants/widgets/button/custom_textbutton.dart';
@@ -47,9 +47,6 @@ class SignInPage extends StatelessWidget {
                             controller: _emailController,
                             title: 'Correo electrónico',
                             icon: Icons.email_outlined,
-                          ),
-                          SizedBox(
-                            height: height * 0.02,
                           ),
                           TextFieldPassword(
                             controller: _passwordController,

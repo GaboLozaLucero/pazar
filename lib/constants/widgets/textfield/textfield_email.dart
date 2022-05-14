@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project/constants/contant_colors.dart';
+import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
 
 class TextFieldEmail extends StatelessWidget {
@@ -17,6 +17,7 @@ class TextFieldEmail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = Get.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -46,9 +47,14 @@ class TextFieldEmail extends StatelessWidget {
               ),
             ),
             filled: true,
-            fillColor: ConstantColors.inputTextColor,
-            suffixIcon: Icon(icon, color: Colors.black,)
+            fillColor: ConstantColors.inputTextFieldColor,
+            suffixIcon: Icon(icon, color: Colors.black,),
           ),
+          cursorHeight: SizeForm.cursorHeight,
+          cursorColor: ConstantColors.inputCursorColor,
+        ),
+        SizedBox(
+          height: height * 0.02,
         ),
       ],
     );
