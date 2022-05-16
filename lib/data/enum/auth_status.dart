@@ -1,1 +1,1 @@
-enum AuthStatus { LoadingResources, Authenticated, Unauthenticated, Registered }
+enum AuthStatus { loadingResources, authenticated, unauthenticated, registered }

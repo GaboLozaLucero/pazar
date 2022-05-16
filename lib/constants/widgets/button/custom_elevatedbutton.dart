@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
+import 'package:project/constants/text_styles.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({
@@ -16,9 +18,11 @@ class CustomElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = Get.width;
+    double _width = Get.width;
+    double _height = Get.height;
     return SizedBox(
-      width: width,
+      width: _width,
+      height: _height * 0.07,
       child: ElevatedButton(
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(color),
@@ -28,8 +32,13 @@ class CustomElevatedButton extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: () {},
-        child: Text(text),
+        onPressed: () {
+          onPress();
+        },
+        child: Text(
+          text.toUpperCase(),
+          style: textInButtonStyle,
+        ),
       ),
     );
   }

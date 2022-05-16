@@ -7,7 +7,7 @@ part './routes.dart';
 class Pages{
   static final pages = [
     GetPage(name: Routes.signIn, page: () => SignInPage()),
-    GetPage(name: Routes.signUp, page: () => const SignUpPage()),
-    GetPage(name: Routes.homePage, page: () => const HomePage(),),
+    GetPage(name: Routes.signUp, page: () => SignUpPage()),
+    GetPage(name: Routes.homePage, page: () => HomePage(),),
   ];
 }

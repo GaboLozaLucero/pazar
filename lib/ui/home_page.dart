@@ -1,14 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project/ui/sign_in_page.dart';
+import 'package:project/constants/size_form.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    double _screenWidth = Get.width;
-    double _screenHeight = Get.height;
-    return SignInPage();
+    double _width = Get.width;
+    double _height = Get.height;
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+            padding: const EdgeInsets.all(SizeForm.margin),
+          child: Column(
+            children: [
+              SizedBox(
+                height: _height * 0.15,
+                child: Image.asset('./assets/images/logo.png'),
+              ),
+              Row(
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

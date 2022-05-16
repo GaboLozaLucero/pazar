@@ -2,26 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
+import 'package:project/constants/text_styles.dart';
 
 class TextFieldEmail extends StatelessWidget {
   const TextFieldEmail({
     Key? key,
     required this.controller,
     required this.title,
-    required this.icon,
   }) : super(key: key);
 
   final TextEditingController controller;
   final String title;
-  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
-    double height = Get.height;
+    double _height = Get.height;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title),
+        Text(
+          title,
+          style: textFormFieldTitleStyle,
+        ),
         TextFormField(
           controller: controller,
           keyboardType: TextInputType.emailAddress,
@@ -47,14 +49,17 @@ class TextFieldEmail extends StatelessWidget {
               ),
             ),
             filled: true,
-            fillColor: ConstantColors.inputTextFieldColor,
-            suffixIcon: Icon(icon, color: Colors.black,),
+            fillColor: ConstantColors.backgroundInputTextFieldColor,
+            suffixIcon: const Icon(
+              Icons.email_outlined,
+              color: Colors.black,
+            ),
           ),
           cursorHeight: SizeForm.cursorHeight,
           cursorColor: ConstantColors.inputCursorColor,
         ),
         SizedBox(
-          height: height * 0.02,
+          height: _height * 0.02,
         ),
       ],
     );
