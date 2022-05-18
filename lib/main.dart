@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: GoogleFonts.aclonicaTextTheme(),
         // appBarTheme: AppBarTheme()
-      ),
+      ),defaultTransition: Transition.rightToLeft,
       home: SignInPage(),
       getPages: Pages.pages,
       debugShowCheckedModeBanner: false,

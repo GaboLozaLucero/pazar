@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
 import 'package:project/constants/widgets/button/custom_elevatedbutton.dart';
+import 'package:project/constants/widgets/button/custom_textbutton.dart';
 import 'package:project/constants/widgets/textfield/textfield_email.dart';
 import 'package:project/constants/widgets/textfield/textfield_name.dart';
 import 'package:project/constants/widgets/textfield/textfield_password.dart';
@@ -26,6 +27,9 @@ class SignUpPage extends StatelessWidget {
       child: Scaffold(
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(SizeForm.margin),
+          physics: const BouncingScrollPhysics(),
+          reverse: false,
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Column(
             children: [
               SizedBox(
@@ -34,10 +38,10 @@ class SignUpPage extends StatelessWidget {
                 child: Image.asset('./assets/images/logo.png'),
               ),
               SizedBox(
-                height: _height * 0.05,
+                height: _height * 0.02,
               ),
               SizedBox(
-                height: _height * 0.63,
+                height: _height * 0.6,
                 width: _width,
                 child: SingleChildScrollView(
                   physics: const BouncingScrollPhysics(),
@@ -80,6 +84,16 @@ class SignUpPage extends StatelessWidget {
                 color: ConstantColors.buttonSignInColor,
                 onPress: () => Get.toNamed(Routes.homePage),
                 text: 'registrase',
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text('¿No tienes una cuenta?'),
+                  CustomTextButton(
+                    text: 'Regístrate aquí',
+                    onPress: () => Get.toNamed(Routes.signIn),
+                  ),
+                ],
               ),
             ],
           ),

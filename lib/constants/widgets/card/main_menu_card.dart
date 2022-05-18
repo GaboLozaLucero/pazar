@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/constants/size_form.dart';
+import 'package:project/constants/text_styles.dart';
 
 class MainMenuCard extends StatelessWidget {
   const MainMenuCard({
@@ -20,36 +22,53 @@ class MainMenuCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double _height = Get.height;
     double _width = Get.width;
+    double _containerHeight = _height * 0.33;
+    double _containerWidth = _width * 0.4;
     return Container(
-      height: _height * 0.3,
-      width: _width * 0.4,
+      height: _containerHeight,
+      width: _containerWidth,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(SizeForm.radius),
-        border: Border.all(width: SizeForm.mainCardBorder,
+        border: Border.all(
+          width: SizeForm.mainCardBorder,
           color: color,
         ),
       ),
-      child: ElevatedButton(style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Colors.white),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(SizeForm.radius),
+      child: ElevatedButton(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.white),
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(SizeForm.radius),
+            ),
           ),
         ),
-      ),
         onPressed: () {},
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
             Text(
-            title.toUpperCase(), style: TextStyle(color: Colors.black),
+              title.toUpperCase(),
+              textAlign: TextAlign.center,
+              style: textInMainCard,
+            ),
+            SizedBox(
+              child: Image.asset(image),
+            ),
+            Container(
+              decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(SizeForm.radius),),
+              child: Padding(
+                padding: const EdgeInsets.all(SizeForm.margin/2.5),
+                child: Text(
+                  description,
+                  textAlign: TextAlign.center,
+                  style: textInDescriptionCard,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-      SizedBox(
-        child: Image.asset(image),
-      ),
-      Text(description, style: TextStyle(color: Colors.black, )),
-        ],
-      ),
-    ),);
+    );
   }
 }

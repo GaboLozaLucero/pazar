@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(
-                height: _height * 0.15,
+                height: _height * 0.1,
                 child: Image.asset('./assets/images/logo.png'),
               ),
               SizedBox(
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
                     title: 'leyendas',
                     color: ConstantColors.legendColor,
                     image: './assets/images/legend_image.png',
-                    description: 'Descubre los mitos',
+                    description: 'Descubre las leyendas',
                   ),
                 ],
               ),
@@ -57,13 +57,13 @@ class HomePage extends StatelessWidget {
                     title: 'mapa',
                     color: ConstantColors.mapColor,
                     image: './assets/images/map_image.png',
-                    description: 'Descubre los mitos',
+                    description: 'Conoce sus ubicaciones',
                   ),
                   MainMenuCard(
                     title: 'perfil',
                     color: ConstantColors.profileColor,
                     image: './assets/images/profile_image.png',
-                    description: 'Descubre los mitos',
+                    description: 'Revisa tu información',
                   ),
                 ],
               ),

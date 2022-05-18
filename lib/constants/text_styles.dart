@@ -11,3 +11,13 @@ TextStyle textInButtonStyle = const TextStyle(
   color: ConstantColors.inputTextButtonColor,
   fontSize: SizeForm.textInButtonSize,
 );
+
+TextStyle textInMainCard = const TextStyle(
+  color: Colors.black,
+  fontSize: SizeForm.textTitleSize,
+);
+
+TextStyle textInDescriptionCard = const TextStyle(
+  color: ConstantColors.inputTextButtonColor,
+  fontSize: SizeForm.textDescriptionSize,
+);
