@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:project/bindings/auth_binding.dart';
 import 'package:project/navigation/pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project/ui/sign_in_page.dart';
@@ -25,8 +26,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(
         textTheme: GoogleFonts.aclonicaTextTheme(),
-        // appBarTheme: AppBarTheme()
-      ),defaultTransition: Transition.rightToLeft,
+      ),
+      defaultTransition: Transition.rightToLeft,
+      initialBinding: AuthBinding(),
       home: SignInPage(),
       getPages: Pages.pages,
       debugShowCheckedModeBanner: false,
