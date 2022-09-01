@@ -88,9 +88,9 @@ class SignUpPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Text('¿No tienes una cuenta?'),
+                  const Text('¿Ya tienes una cuenta?'),
                   CustomTextButton(
-                    text: 'Regístrate aquí',
+                    text: 'Ingresa aquí',
                     onPress: () => Get.toNamed(Routes.signIn),
                   ),
                 ],
