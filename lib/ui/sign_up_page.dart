@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
-import 'package:project/constants/widgets/button/custom_elevatedbutton.dart';
-import 'package:project/constants/widgets/button/custom_textbutton.dart';
-import 'package:project/constants/widgets/textfield/textfield_email.dart';
-import 'package:project/constants/widgets/textfield/textfield_name.dart';
-import 'package:project/constants/widgets/textfield/textfield_password.dart';
+import 'package:project/ui/widgets/button/custom_elevatedbutton.dart';
+import 'package:project/ui/widgets/button/custom_textbutton.dart';
+import 'package:project/ui/widgets/textfield/textfield_email.dart';
+import 'package:project/ui/widgets/textfield/textfield_name.dart';
+import 'package:project/ui/widgets/textfield/textfield_password.dart';
 import 'package:project/navigation/pages.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -81,7 +81,7 @@ class SignUpPage extends StatelessWidget {
                 ),
               ),
               CustomElevatedButton(
-                color: ConstantColors.buttonSignInColor,
+                color: ConstantColors.buttonSignUpColor,
                 onPress: () => Get.toNamed(Routes.homePage),
                 text: 'registrase',
               ),

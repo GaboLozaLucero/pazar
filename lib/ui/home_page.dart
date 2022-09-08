@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
-import 'package:project/constants/widgets/card/main_menu_card.dart';
+import 'package:project/ui/widgets/card/main_menu_card.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);

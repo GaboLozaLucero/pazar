@@ -30,6 +30,39 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.rightToLeft,
       initialBinding: AuthBinding(),
       home: SignInPage(),
+      /*Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              height: Get.height*0.2,
+              color: Colors.white,
+              child: Center(child: CircularProgressIndicator(color: Color(0xFF6a8d73),)),
+            ),
+            Container(
+              height: Get.height*0.2,
+              color: Colors.white,
+              child: Center(child: CircularProgressIndicator(color: Color(0xFF4e4a59)),
+            ),),
+            Container(
+              height: Get.height*0.2,
+              color: Colors.green,
+              child: Center(child: CircularProgressIndicator(color: Color(0xFF4e4a59))),
+            ),
+            Container(
+              height: Get.height*0.2,
+              color: Colors.yellow,
+              child: Center(child: CircularProgressIndicator(color: Color(0xFF4e4a59))),
+            ),
+            Container(
+              height: Get.height*0.2,
+              color: Colors.brown,
+              child: Center(child: CircularProgressIndicator(color: Color(0xFF4e4a59))),
+            ),
+          ],
+        ),
+      ),*/
       getPages: Pages.pages,
       debugShowCheckedModeBanner: false,
     );
