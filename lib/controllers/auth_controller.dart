@@ -24,9 +24,13 @@ class AuthController extends GetxController{
     if (_firebaseAuth.currentUser != null) {
       _appUser.value.uid = _firebaseAuth.currentUser?.uid;
       _appUser.value.email = _firebaseAuth.currentUser?.email;
+
     } else {
       _authStatus.value = AuthStatus.unauthenticated;
       log('${_authStatus.value} new status');
     }
+  }
+  Future getUser() async{
+
   }
 }

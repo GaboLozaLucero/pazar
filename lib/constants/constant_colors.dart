@@ -19,7 +19,7 @@ class ConstantColors {
   static const Color legendIconColor = Color(0xFFDF7E47);
   static const Color mapColor = Color(0xFF208B00);
   static const Color mapIconColor = Color(0xFF2C9F68);
-  static const Color profileColor = Color(0xFF2F2F2F);
+  static const Color profileColor = Color(0xFF151E3F);
   static const Color profileIconColor = Color(0xFF5C5C5C);
 
 

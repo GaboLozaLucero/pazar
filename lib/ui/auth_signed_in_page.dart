@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/controllers/auth_controller.dart';
 import 'package:project/data/enum/auth_status.dart';
+import 'package:project/ui/home_page.dart';
+import 'package:project/ui/sign_in_page.dart';
 
 class AuthSignedInPage extends GetWidget<AuthController> {
   @override
@@ -20,8 +22,11 @@ class AuthSignedInPage extends GetWidget<AuthController> {
             child: CircularProgressIndicator(),
           ),
         );
+      } else if (authStatus == AuthStatus.unauthenticated) {
+        return SignInPage();
+      } else {
+        return HomePage();
       }
-      return Container();
     });
   }
 }

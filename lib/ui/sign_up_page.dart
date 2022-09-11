@@ -1,16 +1,19 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
+import 'package:project/controllers/signed_up_controller.dart';
+import 'package:project/data/models/app_user.dart';
 import 'package:project/ui/widgets/button/custom_elevatedbutton.dart';
 import 'package:project/ui/widgets/button/custom_textbutton.dart';
+import 'package:project/ui/widgets/dialog/snackbar.dart';
 import 'package:project/ui/widgets/textfield/textfield_email.dart';
 import 'package:project/ui/widgets/textfield/textfield_name.dart';
 import 'package:project/ui/widgets/textfield/textfield_password.dart';
 import 'package:project/navigation/pages.dart';
 
-class SignUpPage extends StatelessWidget {
-  SignUpPage({Key? key}) : super(key: key);
+class SignUpPage extends GetView<SignedUpController> {
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
@@ -21,6 +24,7 @@ class SignUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    clearController();
     double _height = Get.height;
     double _width = Get.width;
     return SafeArea(
@@ -82,7 +86,14 @@ class SignUpPage extends StatelessWidget {
               ),
               CustomElevatedButton(
                 color: ConstantColors.buttonSignUpColor,
-                onPress: () => Get.toNamed(Routes.homePage),
+                onPress: () {
+                  if (_formKey.currentState?.validate() == false) {
+                    return;
+                  } else {
+                    _formKey.currentState?.save();
+                    signUp();
+                  }
+                },
                 text: 'registrase',
               ),
               Row(
@@ -100,5 +111,32 @@ class SignUpPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  signUp() async {
+    AppUser userData = AppUser(
+      name: _nameController.text,
+      lastname: _lastnameController.text,
+      email: _emailController.text,
+      password: _passwordController.text,
+      active: true
+    );
+    Snackbar.successSnackbar('ÉXITO', 'El usuario ha sido creado');
+    log(userData.toString());
+    final isCreated = await controller.registerUser(userData);
+    if (isCreated) {
+      clearController();
+    } else {
+      log('error');
+      //errorDialog('ERROR', 'Existe un error al crear el usuario.\n Inténtelo más tarde.');
+    }
+  }
+
+  clearController(){
+    _nameController.clear();
+    _lastnameController.clear();
+    _emailController.clear();
+    _passwordController.clear();
+    _verifyPasswordController.clear();
   }
 }
