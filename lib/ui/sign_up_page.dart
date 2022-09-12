@@ -114,21 +114,20 @@ class SignUpPage extends GetView<SignedUpController> {
   }
 
   signUp() async {
-    AppUser userData = AppUser(
+    final userData = AppUser(
       name: _nameController.text,
       lastname: _lastnameController.text,
       email: _emailController.text,
       password: _passwordController.text,
       active: true
     );
-    Snackbar.successSnackbar('ÉXITO', 'El usuario ha sido creado');
     log(userData.toString());
     final isCreated = await controller.registerUser(userData);
     if (isCreated) {
+      Snackbar.successSnackbar('ÉXITO', 'El usuario ha sido creado');
       clearController();
     } else {
-      log('error');
-      //errorDialog('ERROR', 'Existe un error al crear el usuario.\n Inténtelo más tarde.');
+      Snackbar.errorSnackbar('ERROR', 'Existe un error al crear el usuario.\n Inténtelo más tarde.');
     }
   }
 

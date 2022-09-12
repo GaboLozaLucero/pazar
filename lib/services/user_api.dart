@@ -24,14 +24,20 @@ class UserAPI {
 
   Future<bool> createUser(AppUser appUser) async {
     try {
-      CloudFirestore.DocumentReference reference = _db.collection(usersPath).doc(appUser.uid);
-      Map<String, dynamic> userJson = appUser.toFirestore();
-      final currentTime = CloudFirestore.FieldValue.serverTimestamp();
-      userJson.putIfAbsent('created_at', () => currentTime);
-      //log(appUser.name.toString());
-      await reference.set(userJson);
+      // it will obtain the collection where the document will be
+      CloudFirestore.DocumentReference reference = _db
+          .collection(usersPath)
+          // .withConverter(  it works, but created_at must be added as metadata
+          //   fromFirestore: AppUser.fromFirestore,
+          //   toFirestore: (AppUser appUser, options) => appUser.toFirestore(),
+          // )
+          .doc(appUser.uid);
+      Map<String, dynamic> userToFirestore = appUser.toFirestore();
+      userToFirestore.putIfAbsent('created_at', () => CloudFirestore.FieldValue.serverTimestamp());
+      await reference.set(userToFirestore);
       return true;
     } catch (e) {
+      log(e.toString());
       return false;
     }
   }

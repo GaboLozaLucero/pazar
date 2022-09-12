@@ -4,9 +4,9 @@ import 'package:project/constants/constant_colors.dart';
 
 class Snackbar {
   static successSnackbar(String title, String message){
-    Get.snackbar(title, message,backgroundColor: ConstantColors.mythColor);
+    Get.snackbar(title, message,backgroundColor: ConstantColors.successColor);
   }
   static errorSnackbar(String title, String message){
-    Get.snackbar(title, message,backgroundColor: ConstantColors.buttonSignInColor);
+    Get.snackbar(title, message,backgroundColor: ConstantColors.errorColor);
   }
 }

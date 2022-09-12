@@ -22,12 +22,12 @@ class AppUser {
   }
 
   Map<String, dynamic> toFirestore() => {
-        if(uid!=null) "uid": uid,
-        if(name!=null)"name": name == null,
-        if(lastname!=null)"lastname": lastname == null,
-        if(email!=null)"email": email == null,
-        if(password!=null)"password": password == null,
-        if(active!=null)"active": active == null
+        if (uid != null) "uid": uid,
+        if (name != null) "name": name,
+        if (lastname != null) "lastname": lastname,
+        if (email != null) "email": email,
+        if (password != null) "password": password,
+        if (active != null) "active": active
       };
 
   @override
