@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
+import 'package:project/controllers/auth_controller.dart';
 import 'package:project/ui/widgets/button/custom_elevatedbutton.dart';
 import 'package:project/ui/widgets/button/custom_textbutton.dart';
 import 'package:project/ui/widgets/textfield/textfield_email.dart';
 import 'package:project/ui/widgets/textfield/textfield_password.dart';
 import 'package:project/navigation/pages.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends GetView<AuthController> {
   SignInPage({Key? key}) : super(key: key);
-  
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -62,7 +63,7 @@ class SignInPage extends StatelessWidget {
                         children: [
                           CustomElevatedButton(
                             color: ConstantColors.buttonSignInColor,
-                            onPress: () => Get.toNamed(Routes.homePage),
+                            onPress: (){signInUser();},
                             text: 'ingresar',
                           ),
                           Row(
@@ -71,7 +72,11 @@ class SignInPage extends StatelessWidget {
                               const Text('¿No tienes una cuenta?'),
                               CustomTextButton(
                                 text: 'Regístrate aquí',
-                                onPress: ()=> Get.toNamed(Routes.signUp),
+                                onPress: () => Get.toNamed(Routes.signUp),
+                                // {
+                                //
+                                //   controller.signInUser(_emailController.text, _passwordController.text);
+                                // },
                               ),
                             ],
                           ),
@@ -86,5 +91,9 @@ class SignInPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  signInUser() async{
+    controller.signInUser(_emailController.text, _passwordController.text);
   }
 }

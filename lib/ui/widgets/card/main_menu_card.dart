@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/constants/size_form.dart';
 import 'package:project/constants/text_styles.dart';
+import 'package:project/controllers/auth_controller.dart';
 
 class MainMenuCard extends StatelessWidget {
   const MainMenuCard({
@@ -43,7 +44,10 @@ class MainMenuCard extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          AuthController authController = AuthController();
+          authController.signOut();
+        },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [

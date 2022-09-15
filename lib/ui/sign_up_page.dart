@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
-import 'package:project/controllers/signed_up_controller.dart';
+import 'package:project/controllers/auth_controller.dart';
 import 'package:project/data/models/app_user.dart';
 import 'package:project/ui/widgets/button/custom_elevatedbutton.dart';
 import 'package:project/ui/widgets/button/custom_textbutton.dart';
@@ -13,8 +13,7 @@ import 'package:project/ui/widgets/textfield/textfield_name.dart';
 import 'package:project/ui/widgets/textfield/textfield_password.dart';
 import 'package:project/navigation/pages.dart';
 
-class SignUpPage extends GetView<SignedUpController> {
-
+class SignUpPage extends GetView<AuthController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _lastnameController = TextEditingController();
@@ -114,15 +113,11 @@ class SignUpPage extends GetView<SignedUpController> {
   }
 
   signUp() async {
-    final userData = AppUser(
-      name: _nameController.text,
-      lastname: _lastnameController.text,
-      email: _emailController.text,
-      password: _passwordController.text,
-      active: true
-    );
+    final userData =
+        AppUser(name: _nameController.text, lastname: _lastnameController.text, email: _emailController.text, active: true);
+    String password = _passwordController.text;
     log(userData.toString());
-    final isCreated = await controller.registerUser(userData);
+    final isCreated = await controller.registerUser(userData, password);
     if (isCreated) {
       Snackbar.successSnackbar('ÉXITO', 'El usuario ha sido creado');
       clearController();
@@ -131,7 +126,7 @@ class SignUpPage extends GetView<SignedUpController> {
     }
   }
 
-  clearController(){
+  clearController() {
     _nameController.clear();
     _lastnameController.clear();
     _emailController.clear();

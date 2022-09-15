@@ -7,12 +7,14 @@ import 'package:project/data/enum/auth_status.dart';
 import 'package:project/ui/home_page.dart';
 import 'package:project/ui/sign_in_page.dart';
 
-class AuthSignedInPage extends GetWidget<AuthController> {
+class AuthPage extends GetWidget<AuthController> {
+  const AuthPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    controller.verifyUser();
     return Obx(() {
-      final AuthController authController = Get.find<AuthController>();
-      final authStatus = authController.authStatus;
+      final authStatus = controller.authStatus;
       if (authStatus == AuthStatus.loadingResources) {
         Get.find<AuthController>().verifyUser();
         log('LOADING AUTHENTICATION');
