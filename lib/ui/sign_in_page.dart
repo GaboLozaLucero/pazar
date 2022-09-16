@@ -63,7 +63,9 @@ class SignInPage extends GetView<AuthController> {
                         children: [
                           CustomElevatedButton(
                             color: ConstantColors.buttonSignInColor,
-                            onPress: (){signInUser();},
+                            onPress: () {
+                              signInUser();
+                            },
                             text: 'ingresar',
                           ),
                           Row(
@@ -93,7 +95,7 @@ class SignInPage extends GetView<AuthController> {
     );
   }
 
-  signInUser() async{
+  signInUser() async {
     controller.signInUser(_emailController.text, _passwordController.text);
   }
 }

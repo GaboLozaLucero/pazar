@@ -21,6 +21,8 @@ class SignUpPage extends GetView<AuthController> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _verifyPasswordController = TextEditingController();
 
+  SignUpPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     clearController();

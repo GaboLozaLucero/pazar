@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/constants/size_form.dart';
 import 'package:project/constants/text_styles.dart';
-import 'package:project/controllers/auth_controller.dart';
 
 class MainMenuCard extends StatelessWidget {
   const MainMenuCard({
@@ -12,12 +10,14 @@ class MainMenuCard extends StatelessWidget {
     required this.title,
     required this.image,
     required this.description,
+    required this.onPress,
   }) : super(key: key);
 
   final Color color;
   final String title;
   final String image;
   final String description;
+  final Function onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -45,8 +45,7 @@ class MainMenuCard extends StatelessWidget {
           ),
         ),
         onPressed: () {
-          AuthController authController = AuthController();
-          authController.signOut();
+          onPress();
         },
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -60,9 +59,12 @@ class MainMenuCard extends StatelessWidget {
               child: Image.asset(image),
             ),
             Container(
-              decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(SizeForm.radius),),
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.circular(SizeForm.radius),
+              ),
               child: Padding(
-                padding: const EdgeInsets.all(SizeForm.margin/2.5),
+                padding: const EdgeInsets.all(SizeForm.margin / 2.5),
                 child: Text(
                   description,
                   textAlign: TextAlign.center,

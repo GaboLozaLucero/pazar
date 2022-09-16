@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       defaultTransition: Transition.rightToLeft,
       initialBinding: AuthBinding(),
-      home: AuthPage(),
+      home: const AuthPage(),
       getPages: Pages.pages,
       debugShowCheckedModeBanner: false,
     );

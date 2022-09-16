@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
 import 'package:project/constants/text_styles.dart';
+// import 'package:project/controllers/auth_controller.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   const CustomElevatedButton({
@@ -34,6 +34,7 @@ class CustomElevatedButton extends StatelessWidget {
         ),
         onPressed: () {
           onPress();
+          // Get.find<AuthController>().signOut();
         },
         child: Text(
           text.toUpperCase(),
