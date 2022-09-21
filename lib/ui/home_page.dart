@@ -66,7 +66,7 @@ class HomePage extends StatelessWidget {
                     image: './assets/images/map_image.png',
                     description: 'Conoce sus ubicaciones',
                       onPress: (){
-                        Get.toNamed(Routes.signIn);
+                        Get.toNamed(Routes.map);
                       }
                   ),
                   MainMenuCard(

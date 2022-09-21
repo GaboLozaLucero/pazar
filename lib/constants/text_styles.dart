@@ -21,3 +21,8 @@ TextStyle textInDescriptionCard = const TextStyle(
   color: ConstantColors.inputTextButtonColor,
   fontSize: SizeForm.textDescriptionSize,
 );
+
+TextStyle textTitle = const TextStyle(
+  color: Colors.black,
+  fontSize: SizeForm.textTitleSize,
+);
