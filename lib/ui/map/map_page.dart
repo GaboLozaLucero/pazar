@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:project/constants/text_styles.dart';
 import 'package:project/controllers/map_controller.dart';
 import 'package:project/ui/widgets/appbar/custom_appbar.dart';
 import 'dart:developer';
@@ -34,7 +33,7 @@ class MapPage extends GetView<MapController> {
           log('this is my current location after circular indicator: ${_.locationPosition.latitude} ${_.locationPosition
               .longitude}');
           return Scaffold(
-            appBar: CustomAppbar(title: 'Mapa'),
+            appBar: const CustomAppbar(title: 'Mapa'),
             body: SafeArea(
               child: Stack(
                 children: [
@@ -55,12 +54,12 @@ class MapPage extends GetView<MapController> {
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.all(2.0),
+                        padding: const EdgeInsets.all(2.0),
                       ),
                       onPressed: () {
                         controller.currentLocation();
                       },
-                      child: Icon(Icons.my_location),
+                      child: const Icon(Icons.my_location),
                     ),
                   ),
                 ],

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_final_fields
+
 import 'dart:developer';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,7 +11,6 @@ import 'package:project/services/user_api.dart';
 class AuthController extends GetxController {
   final UserAPI _userAPI = UserAPI();
 
-  //late FirebaseAuth _firebaseAuth;
   Rx<AppUser> _appUser = AppUser().obs;
 
   AppUser get appUser => this._appUser.value;

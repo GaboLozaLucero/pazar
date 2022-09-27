@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:get/get.dart';
 import 'package:project/bindings/auth_binding.dart';
 import 'package:project/bindings/map_binding.dart';
