@@ -15,7 +15,7 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
     Color appColor = const Color(0xFF373752);
     Color backArrow = const Color(0xFFF6B05C);
     return AppBar(
-      backgroundColor: appColor,
+      backgroundColor: Colors.white,
       centerTitle: true,
       title: Text(
         title.toUpperCase(),

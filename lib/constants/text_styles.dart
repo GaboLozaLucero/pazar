@@ -23,6 +23,6 @@ TextStyle textInDescriptionCard = const TextStyle(
 );
 
 TextStyle textTitle = const TextStyle(
-  color: Colors.white,
+  color: Colors.black,
   fontSize: SizeForm.textTitleSize,
 );

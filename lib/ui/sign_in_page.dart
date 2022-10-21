@@ -31,15 +31,15 @@ class SignInPage extends GetView<AuthController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                height: _height * 0.4,
+                height: _height * 0.25,
                 width: _width,
                 child: Image.asset('./assets/images/logo.png'),
               ),
               SizedBox(
-                height: _height * 0.05,
+                height: _height * 0.1,
               ),
               SizedBox(
-                height: _height * 0.45,
+                height: _height * 0.55,
                 width: _width,
                 child: Form(
                   key: _formKey,
@@ -49,10 +49,12 @@ class SignInPage extends GetView<AuthController> {
                       Column(
                         children: [
                           TextFieldEmail(
+                            //Custom text field for emails
                             controller: _emailController,
                             title: 'Correo electrónico',
                           ),
                           TextFieldPassword(
+                            //Custom text field for passwords
                             controller: _passwordController,
                             title: 'Contraseña',
                           ),
@@ -64,7 +66,12 @@ class SignInPage extends GetView<AuthController> {
                           CustomElevatedButton(
                             color: ConstantColors.buttonSignInColor,
                             onPress: () {
-                              signInUser();
+                              if (_formKey.currentState?.validate() == false) {
+                                return;
+                              } else {
+                                _formKey.currentState?.save();
+                                signInUser();
+                              }
                             },
                             text: 'ingresar',
                           ),
@@ -75,10 +82,6 @@ class SignInPage extends GetView<AuthController> {
                               CustomTextButton(
                                 text: 'Regístrate aquí',
                                 onPress: () => Get.toNamed(Routes.signUp),
-                                // {
-                                //
-                                //   controller.signInUser(_emailController.text, _passwordController.text);
-                                // },
                               ),
                             ],
                           ),
