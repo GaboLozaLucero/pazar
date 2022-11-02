@@ -1,32 +1,41 @@
-import 'package:flutter/widgets.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Stories{
+class Story {
   String? uid;
   String? name;
-  LatLng? latLng;
-  String? direction;
+  GeoPoint? geoPoint;
+  String? address;
   String? story;
-  Image? image;
+  String? imageUrl;
+  bool? active;
+  String? type;
 
-  Stories({this.uid, this.name, this.latLng, this.direction, this.story, this.image});
+  Story({this.uid, this.name, this.geoPoint, this.address, this.story, this.imageUrl, this.active, this.type});
 
-  factory Stories.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot, SnapshotOptions? options) {
+  factory Story.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot, SnapshotOptions? options) {
     final data = snapshot.data();
-    return Stories(
+    return Story(
         uid: data?["uid"],
         name: data?["name"],
-        latLng: data?["latLng"],
-        direction: data?["direction"],
-        story: data?["story"]);
+        geoPoint: data?["geoPoint"],
+        address: data?["address"],
+        story: data?["story"],
+        imageUrl: data?["image"],
+        active: data?["active"]);
   }
 
   Map<String, dynamic> toFirestore() => {
     if (uid != null) "uid": uid,
     if (name != null) "name": name,
-    if (latLng != null) "latlng": latLng,
-    if (direction != null) "direction": direction,
-    if (story != null) "story": story
+    if (geoPoint != null) "geoPoint": geoPoint,
+    if (address != null) "address": address,
+    if (story != null) "story": story,
+    if (imageUrl != null) "image": imageUrl,
+    if (active != null) "active": active
   };
+
+  @override
+  String toString() {
+    return 'Story{uid: $uid, name: $name, geoPoint: $geoPoint, address: $address, story: $story, imageUrl: $imageUrl, active: $active, type: $type}';
+  }
 }

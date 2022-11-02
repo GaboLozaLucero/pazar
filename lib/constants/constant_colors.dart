@@ -26,6 +26,6 @@ class ConstantColors {
   static const Color profileIconColor = Color(0xFF5C5C5C);
 
   //messages
-  static const Color successColor = Color(0xFF32F406);
+  static const Color successColor = Color(0xFF41CE21);
   static const Color errorColor = Color(0xFFF23406);
 }

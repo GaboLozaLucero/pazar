@@ -6,10 +6,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:project/data/enum/auth_status.dart';
 import 'package:project/data/models/app_user.dart';
 import 'package:project/navigation/pages.dart';
-import 'package:project/services/user_api.dart';
+import 'package:project/services/user_service.dart';
 
 class AuthController extends GetxController {
-  final UserAPI _userAPI = UserAPI();
+  final UserService _userService = UserService();
 
   Rx<AppUser> _appUser = AppUser().obs;
 
@@ -53,7 +53,7 @@ class AuthController extends GetxController {
         );
         log(userCredential.toString());
         appUser.uid= userCredential.user?.uid;
-        isCreated = await _userAPI.createUser(appUser);
+        isCreated = await _userService.createUser(appUser);
         signInUser(appUser.email.toString(), password);
         return isCreated;
       } on FirebaseAuthException catch (e) {
@@ -77,7 +77,7 @@ class AuthController extends GetxController {
     if (currentUser != null) {
       _appUser.value.uid = currentUser?.uid;
       _appUser.value.email = currentUser?.email;
-      final user = await _userAPI.getUserByUid(_appUser.value.uid.toString());
+      final user = await _userService.getUserByUid(_appUser.value.uid.toString());
       log('this is a email', error: {currentUser?.email});
       if (user != null) {
         if (user.active == false) {

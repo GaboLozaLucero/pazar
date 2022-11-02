@@ -12,11 +12,7 @@ class AppUser {
   factory AppUser.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot, SnapshotOptions? options) {
     final data = snapshot.data();
     return AppUser(
-        uid: data?["uid"],
-        name: data?["name"],
-        lastname: data?["lastname"],
-        email: data?["email"],
-        active: data?["active"]);
+        uid: data?["uid"], name: data?["name"], lastname: data?["lastname"], email: data?["email"], active: data?["active"]);
   }
 
   Map<String, dynamic> toFirestore() => {

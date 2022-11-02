@@ -5,7 +5,7 @@ import 'dart:developer';
 import 'package:project/data/models/app_user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart' as CloudFirestore;
 
-class UserAPI {
+class UserService {
   final CloudFirestore.FirebaseFirestore _db = CloudFirestore.FirebaseFirestore.instance;
 
   static const String usersPath = 'users';
