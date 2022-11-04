@@ -7,7 +7,7 @@ import 'package:project/data/models/stories.dart';
 class StoriesService {
   final CloudFirestore.FirebaseFirestore _db = CloudFirestore.FirebaseFirestore.instance;
   static const String mythsPath = 'myths';
-  static const String legendsPath = 'legends';
+  static const String legendsPath = 'stories';
 
   Future<String> uploadPortrait(String imageName, File filePath) async {
     try {

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class ConstantColors {
+  //appBar
+  static const Color appBarBackgroundColor = Colors.white70;
+  static const Color appBarTextColor = Color(0xFF553F68);
+
   //button
   static const Color buttonSignInColor = Color(0xFF009FA3);
   static const Color buttonSignUpColor = Color(0xFF007BB7);

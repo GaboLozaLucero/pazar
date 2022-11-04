@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:project/data/models/stories.dart';
 import 'package:project/services/stories_service.dart';
 
-class LegendsController extends GetxController{
+class StoryController extends GetxController{
   final StoriesService _storiesService = StoriesService();
 
   final RxList<Story> _listStories = <Story>[].obs;

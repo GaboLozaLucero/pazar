@@ -7,4 +7,6 @@ abstract class Routes {
   static const homePage = '/home_page';
   static const map = '/map';
   static const legends = '/legends';
+  static const myths = '/myths';
+  static const story = '/story';
 }

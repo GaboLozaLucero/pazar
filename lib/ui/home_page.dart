@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                     image: './assets/images/myth_image.png',
                     description: 'Descubre los mitos',
                     onPress: () {
-                      Get.toNamed(Routes.signIn);
+                      Get.toNamed(Routes.myths);
                     },
                   ),
                   MainMenuCard(

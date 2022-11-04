@@ -23,6 +23,11 @@ TextStyle textInDescriptionCard = const TextStyle(
 );
 
 TextStyle textTitle = const TextStyle(
-  color: Colors.black,
+  color: ConstantColors.appBarTextColor,
   fontSize: SizeForm.textTitleSize,
+);
+
+TextStyle textCardStories = const TextStyle(
+  color: Colors.white,
+  fontSize: SizeForm.textCardStoriesSize,
 );
