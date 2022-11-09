@@ -5,6 +5,8 @@ import 'package:project/controllers/map_controller.dart';
 import 'package:project/ui/widgets/appbar/custom_appbar.dart';
 import 'dart:developer';
 
+import 'package:project/ui/widgets/button/floating_story_button.dart';
+
 class MapPage extends GetView<MapController> {
   const MapPage({Key? key}) : super(key: key);
 
@@ -13,8 +15,7 @@ class MapPage extends GetView<MapController> {
     return GetX<MapController>(
       initState: (state) async {
         await controller.getUserLocation();
-        log('this is my current location when pages inits: ${controller.locationPosition.latitude} ${controller.locationPosition
-            .longitude}');
+        log('this is my current location when pages inits: ${controller.locationPosition.latitude} ${controller.locationPosition.longitude}');
       },
       builder: (_) {
         if (_.isLoading1) {
@@ -30,8 +31,7 @@ class MapPage extends GetView<MapController> {
             ),
           );
         } else {
-          log('this is my current location after circular indicator: ${_.locationPosition.latitude} ${_.locationPosition
-              .longitude}');
+          log('this is my current location after circular indicator: ${_.locationPosition.latitude} ${_.locationPosition.longitude}');
           return Scaffold(
             appBar: const CustomAppbar(title: 'Mapa'),
             body: SafeArea(
@@ -50,17 +50,12 @@ class MapPage extends GetView<MapController> {
                     myLocationButtonEnabled: false,
                     myLocationEnabled: true,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        padding: const EdgeInsets.all(2.0),
-                      ),
-                      onPressed: () {
-                        controller.currentLocation();
-                      },
-                      child: const Icon(Icons.my_location),
-                    ),
+                  FloatingStoryButton(
+                    iconData: Icons.my_location,
+                    function: () {
+                      log('this is pressed');
+                      controller.currentLocation();
+                    },
                   ),
                 ],
               ),

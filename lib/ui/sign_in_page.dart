@@ -78,7 +78,9 @@ class SignInPage extends GetView<AuthController> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text('¿No tienes una cuenta?'),
+                              const Text(
+                                '¿No tienes una cuenta?',
+                              ),
                               CustomTextButton(
                                 text: 'Regístrate aquí',
                                 onPress: () => Get.toNamed(Routes.signUp),

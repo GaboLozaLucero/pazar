@@ -14,12 +14,11 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color appColor = const Color(0xFF373752);
-    Color backArrow = const Color(0xFFF6B05C);
     return AppBar(
       title: Text(
         title.toUpperCase(),
         style: textTitle,
+        overflow: TextOverflow.fade,
       ),
       backgroundColor: ConstantColors.appBarBackgroundColor,
       centerTitle: true,
@@ -28,22 +27,13 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
           bottom: Radius.circular(SizeForm.appBarRadius),
         ),
       ),
-      leading: OutlinedButton(
-        style: ButtonStyle(
-          side: MaterialStateProperty.all(
-            const BorderSide(
-              width: 0.0,
-              style: BorderStyle.none,
-            ),
-          ),
-          shadowColor: MaterialStateProperty.all(Colors.white),
-        ),
+      leading: IconButton(
         onPressed: () {
           Get.back();
         },
-        child: Icon(
+        icon: const Icon(
           Icons.arrow_back_ios,
-          color: backArrow,
+          color: ConstantColors.buttonColor,
         ),
       ),
     );

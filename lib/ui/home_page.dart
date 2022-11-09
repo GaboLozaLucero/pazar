@@ -74,7 +74,7 @@ class HomePage extends StatelessWidget {
                       image: './assets/images/profile_image.png',
                       description: 'Revisa tu información',
                       onPress: () {
-                        Get.toNamed(Routes.legends);
+                        Get.find<AuthController>().signOut();
                       }),
                 ],
               ),

@@ -16,7 +16,7 @@ class AuthPage extends GetWidget<AuthController> {
     return Obx(() {
       final authStatus = controller.authStatus;
       if (authStatus == AuthStatus.loadingResources) {
-        Get.find<AuthController>().verifyUser();
+        controller.verifyUser();
         log('LOADING AUTHENTICATION');
         return Container(
           color: Colors.white,
@@ -27,7 +27,7 @@ class AuthPage extends GetWidget<AuthController> {
       } else if (authStatus == AuthStatus.unauthenticated) {
         return SignInPage();
       } else {
-        return HomePage();
+        return const HomePage();
       }
     });
   }

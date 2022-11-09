@@ -18,6 +18,7 @@ class SizeForm {
   static const double textTitleSize = 20.0;
   static const double textDescriptionSize = 14.0;
   static const double textCardStoriesSize = 12.0;
+  static const double textStoriesSize = 12.0;
 
   // border
   static const double mainCardBorder = 3;

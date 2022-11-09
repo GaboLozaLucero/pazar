@@ -3,8 +3,8 @@
 import 'package:get/get.dart';
 import 'package:project/bindings/auth_binding.dart';
 import 'package:project/bindings/map_binding.dart';
-import 'package:project/bindings/story_binding.dart';
-import 'package:project/data/models/stories.dart';
+import 'package:project/bindings/single_story_binding.dart';
+import 'package:project/bindings/stories_binding.dart';
 import 'package:project/ui/auth_page.dart';
 import 'package:project/ui/stories/legends_page.dart';
 import 'package:project/ui/map/map_page.dart';
@@ -12,6 +12,7 @@ import 'package:project/ui/sign_in_page.dart';
 import 'package:project/ui/sign_up_page.dart';
 import 'package:project/ui/home_page.dart';
 import 'package:project/ui/stories/myths_page.dart';
+import 'package:project/ui/stories/single_story_page.dart';
 
 part './routes.dart';
 
@@ -45,14 +46,17 @@ class Pages {
     GetPage(
       name: Routes.myths,
       page: () => MythsPage(),
-      binding: StoryBinding(),
+      binding: StoriesBinding(),
     ),
     GetPage(
       name: Routes.legends,
       page: () => LegendsPage(),
-      binding: StoryBinding(),
+      binding: StoriesBinding(),
+    ),
+    GetPage(
+      name: Routes.story,
+      page: () => SingleStoryPage(),
+      binding: SingleStoryBinding(),
     ),
   ];
-
-  static get story => null;
 }

@@ -45,6 +45,7 @@ class AuthController extends GetxController {
 
   Future<bool> registerUser(AppUser appUser, String password) async {
     bool isCreated = false;
+    _authStatus.value = AuthStatus.loadingResources;
     if (appUser != null) {
       try {
         final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -52,7 +53,7 @@ class AuthController extends GetxController {
           password: password,
         );
         log(userCredential.toString());
-        appUser.uid= userCredential.user?.uid;
+        appUser.uid = userCredential.user?.uid;
         isCreated = await _userService.createUser(appUser);
         signInUser(appUser.email.toString(), password);
         return isCreated;
@@ -62,9 +63,11 @@ class AuthController extends GetxController {
         } else if (e.code == 'email-already-in-use') {
           log('The account already exists for that email.');
         }
+        _authStatus.value = AuthStatus.unauthenticated;
         return isCreated;
       } catch (e) {
         log(e.toString());
+        _authStatus.value = AuthStatus.unauthenticated;
         return isCreated;
       }
     }
@@ -99,6 +102,7 @@ class AuthController extends GetxController {
   }
 
   Future signOut() async {
+    _authStatus.value = AuthStatus.loadingResources;
     await FirebaseAuth.instance.signOut();
     _appUser.value = AppUser();
     _authStatus.value = AuthStatus.unauthenticated;

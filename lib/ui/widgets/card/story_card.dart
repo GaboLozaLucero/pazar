@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:project/constants/size_form.dart';
 import 'package:project/constants/text_styles.dart';
 import 'package:project/data/models/stories.dart';
+import 'package:project/ui/widgets/container/text_container.dart';
 
 class StoryCard extends StatelessWidget {
   const StoryCard({Key? key, this.stories, required this.function}) : super(key: key);
@@ -13,7 +14,6 @@ class StoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = Get.height;
-    double width = Get.width;
     return ListView.builder(
         itemCount: stories?.length,
         itemBuilder: (context, index) {
@@ -26,7 +26,7 @@ class StoryCard extends StatelessWidget {
             padding: const EdgeInsets.only(left: 15.0, right: 15.0, top: 18.0),
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20.0),
+                borderRadius: BorderRadius.circular(SizeForm.buttonRadius),
                 border: Border.all(
                   width: 1.0,
                   color: Colors.black,
@@ -57,30 +57,13 @@ class StoryCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Container(
-                      padding: const EdgeInsets.all(SizeForm.margin / 4),
-                      decoration: BoxDecoration(
-                        color: Colors.black38,
-                        borderRadius: BorderRadius.circular(SizeForm.textBackgroundRadius),
-                      ),
-                      child: Text(
-                        '${stories?[index].name}',
-                        style: const TextStyle(
-                          fontSize: 18.0,
-                          color: Colors.white,
-                        ),
-                      ),
+                    TextContainer(
+                      text: '${stories?[index].name}',
+                      style: textInDescriptionCard,
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(SizeForm.margin / 4),
-                      decoration: BoxDecoration(
-                        color: Colors.black38,
-                        borderRadius: BorderRadius.circular(SizeForm.textBackgroundRadius),
-                      ),
-                      child: Text(
-                        '${stories?[index].address}',
-                        style: textCardStories,
-                      ),
+                    TextContainer(
+                      text: '${stories?[index].address}',
+                      style: textCardStories,
                     ),
                   ],
                 ),

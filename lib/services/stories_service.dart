@@ -25,7 +25,7 @@ class StoriesService {
 
   Future<bool> saveStory(Story story) async {
     try {
-      CloudFirestore.DocumentReference reference = _db.collection(story.type!).doc(story.uid);
+      CloudFirestore.DocumentReference reference = _db.collection(story.type!).doc(story.id);
       Map<String, dynamic> storyToFirestore = story.toFirestore();
       storyToFirestore.putIfAbsent('created_at', () => CloudFirestore.FieldValue.serverTimestamp());
       await reference.set(storyToFirestore);
@@ -43,7 +43,7 @@ class StoriesService {
           .where('active', isEqualTo: true)
           .get();
       // final stories = storiesQuery.docs.map((story) => Story.fromFirestore(story, null)).toList();
-      // log(storiesQuery.docs.map((story) => Story().toString()).toList()[1]);
+      log('stories: ${storiesQuery.docs.map((story) => Story.fromFirestore(story, null)).toList()}');
       return storiesQuery.docs.map((story) => Story.fromFirestore(story, null)).toList();
     } catch (e) {
       log(e.toString());
