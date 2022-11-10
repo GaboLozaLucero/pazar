@@ -23,11 +23,14 @@ class CircularLoadingIndicator extends StatelessWidget {
             ),
             SizedBox(height: height * 0.03),
             SizedBox(
-              height: Get.height*0.1,
+              height: Get.height * 0.1,
               child: AnimatedTextKit(animatedTexts: [
-                ScaleAnimatedText(text, textStyle: const TextStyle(fontSize: SizeForm.textFieldTitleSize*2),),
-              ]),
-            )
+                ScaleAnimatedText(
+                  text,
+                  textStyle: const TextStyle(fontSize: SizeForm.textFieldTitleSize * 2),
+                ),
+              ], repeatForever: true),
+            ),
           ],
         ),
       ),

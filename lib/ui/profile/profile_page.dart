@@ -62,7 +62,8 @@ class ProfilePage extends GetView<AuthController> {
                     TextFieldPassword(
                       controller: _verifyPasswordController,
                       title: 'Verifica tu contraseña',
-                    ),            CustomElevatedButton(
+                    ),
+                    CustomElevatedButton(
                       color: ConstantColors.alertColor,
                       onPress: () {
                         // if (_formKey.currentState?.validate() == false) {
@@ -74,10 +75,12 @@ class ProfilePage extends GetView<AuthController> {
                       },
                       text: 'actualizar',
                     )
-
                   ],
                 ),
               ),
+            ),
+            Row(
+              children: [OutlinedButton(onPressed: (){}, child: Text('lugares visitados'),),],
             ),
             CustomElevatedButton(
               color: ConstantColors.errorColor,
@@ -99,7 +102,10 @@ class ProfilePage extends GetView<AuthController> {
 
   logOut() {
     Get.dialog(AlertDialog(
-      title: Text('¿Estas seguro que quieres salir?', textAlign: TextAlign.center,),
+      title: Text(
+        '¿Estas seguro que quieres salir?',
+        textAlign: TextAlign.center,
+      ),
       actions: [
         CustomElevatedButton(
           color: ConstantColors.errorColor,

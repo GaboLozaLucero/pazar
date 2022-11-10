@@ -12,9 +12,9 @@ class StoriesController extends GetxController{
   final RxBool _loading = false.obs;
   bool get loading => _loading.value;
 
-  Future retrieveStories(String collectionPath) async {
+  Future retrieveStories(String type) async {
     _loading.value = true;
-    final result = await _storiesService.retrieveStories(collectionPath);
+    final result = await _storiesService.retrieveStories(type);
     _listStories.value = result!;
     _loading.value = false;
   }

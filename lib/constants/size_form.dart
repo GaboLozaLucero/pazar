@@ -14,7 +14,7 @@ class SizeForm {
   static const double cursorHeight = 25.0;
 
   // text
-  static const double textInButtonSize = 18.0;
+  static const double textInButtonSize = 15.0;
   static const double textFieldTitleSize = 16.0;
   static const double textTitleSize = 20.0;
   static const double textDescriptionSize = 14.0;

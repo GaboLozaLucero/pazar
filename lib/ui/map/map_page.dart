@@ -26,7 +26,8 @@ class MapPage extends GetView<MapController> {
       },
       builder: (_) {
         if (_.isLoading1) {
-          return const CircularLoadingIndicator(text: 'Cargando mapa',
+          return const CircularLoadingIndicator(
+            text: 'Cargando mapa',
           );
         } else {
           Set<Polyline> polys = {};
@@ -131,13 +132,27 @@ class MapPage extends GetView<MapController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              SizedBox(
-                  height: Get.height * 0.2,
-                  width: double.infinity,
-                  child: Image.network(
-                    '${story.imageUrl}',
-                    fit: BoxFit.fill,
-                  )),
+              Container(
+                height: Get.height * 0.2,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(SizeForm.radius),
+                ),
+                child: Image.network(
+                  '${story.imageUrl}',
+                  fit: BoxFit.fill,
+                  loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                    if (loadingProgress == null) return child;
+                    return Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    );
+                  },
+                ),
+              ),
               CustomElevatedButton(
                 color: ConstantColors.textTitleStoryColor,
                 onPress: () {

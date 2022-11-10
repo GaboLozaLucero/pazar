@@ -31,42 +31,63 @@ class StoryCard extends StatelessWidget {
                   width: 1.0,
                   color: Colors.black,
                 ),
-                image: DecorationImage(
-                  image: NetworkImage('${stories?[index].imageUrl}'),
-                  fit: BoxFit.fill,
-                ),
+                // image: DecorationImage(
+                //   image: NetworkImage('${stories?[index].imageUrl}'),
+                //   fit: BoxFit.fill,
+                // ),
               ),
               height: height * 0.15,
               width: double.infinity,
-              child: OutlinedButton(
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
+              child: Stack(fit: StackFit.expand,
+                children: [
+                  ClipRRect(
                       borderRadius: BorderRadius.circular(SizeForm.buttonRadius),
-                    ),
+                      child: Image.network(
+                        '${stories?[index].imageUrl}',
+                        fit: BoxFit.fill,
+                        loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Center(
+                            child: CircularProgressIndicator(
+                              value: loadingProgress.expectedTotalBytes != null
+                                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                                  : null,
+                            ),
+                          );
+                        },
+                      ),
                   ),
-                  alignment: Alignment.bottomRight,
-                  padding: MaterialStateProperty.all(
-                    const EdgeInsets.symmetric(vertical: SizeForm.margin / 4, horizontal: SizeForm.margin / 2),
-                  ),
-                ),
-                onPressed: () {
-                  function(index);
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    TextContainer(
-                      text: '${stories?[index].name}',
-                      style: textInDescriptionCard,
+                  OutlinedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(SizeForm.buttonRadius),
+                        ),
+                      ),
+                      alignment: Alignment.bottomRight,
+                      padding: MaterialStateProperty.all(
+                        const EdgeInsets.symmetric(vertical: SizeForm.margin / 4, horizontal: SizeForm.margin / 2),
+                      ),
                     ),
-                    TextContainer(
-                      text: '${stories?[index].address}',
-                      style: textCardStories,
+                    onPressed: () {
+                      function(index);
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        TextContainer(
+                          text: '${stories?[index].name}',
+                          style: textInDescriptionCard,
+                        ),
+                        TextContainer(
+                          text: '${stories?[index].address}',
+                          style: textCardStories,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
           );

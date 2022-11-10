@@ -18,7 +18,7 @@ class LegendsPage extends GetView<StoriesController> {
         appBar: const CustomAppbar(title: 'leyendas'),
         body: GetX<StoriesController>(
           initState: (state) async{
-            await controller.retrieveStories('legends');
+            await controller.retrieveStories('legend');
           },
           builder: (controlling) {if (controlling.loading) {
             return const CircularLoadingIndicator(text: 'Cargando leyendas');

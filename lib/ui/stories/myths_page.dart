@@ -19,7 +19,7 @@ class MythsPage extends GetView<StoriesController> {
         appBar: const CustomAppbar(title: 'mitos'),
         body: GetX<StoriesController>(
           initState: (state) async {
-            await controller.retrieveStories('myths');
+            await controller.retrieveStories('myth');
           },
           builder: (controlling) {
             if (controlling.loading) {

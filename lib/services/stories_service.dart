@@ -6,8 +6,7 @@ import 'package:project/data/models/stories.dart';
 
 class StoriesService {
   final CloudFirestore.FirebaseFirestore _db = CloudFirestore.FirebaseFirestore.instance;
-  static const String mythsPath = 'myths';
-  static const String legendsPath = 'stories';
+  static const String collectionPath = 'stories';
 
   Future<String> uploadPortrait(String imageName, File filePath) async {
     try {
@@ -36,11 +35,11 @@ class StoriesService {
     }
   }
 
-  Future<List<Story>?> retrieveStories(String collectionPath) async {
+  Future<List<Story>?> retrieveStories(String type) async {
     try {
       final storiesQuery = await _db
           .collection(collectionPath)
-          .where('active', isEqualTo: true)
+          .where('active', isEqualTo: true).where('type', isEqualTo: type)
           .get();
       // final stories = storiesQuery.docs.map((story) => Story.fromFirestore(story, null)).toList();
       log('stories: ${storiesQuery.docs.map((story) => Story.fromFirestore(story, null)).toList()}');
