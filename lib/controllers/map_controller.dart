@@ -1,7 +1,13 @@
 import 'dart:developer';
+import 'dart:typed_data';
+import 'dart:ui' as ui;
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:project/data/models/stories.dart';
+import 'package:project/services/stories_service.dart';
 
 class MapController extends GetxController {
   GoogleMapController? _googleMapController;
@@ -16,6 +22,19 @@ class MapController extends GetxController {
   Rx<LatLng> _locationPosition = const LatLng(-16.49817713198687, -68.133475729177).obs;
 
   LatLng get locationPosition => _locationPosition.value;
+
+  final RxList<LatLng> _polyLinesCoordinates = <LatLng>[].obs;
+
+  List<LatLng> get polyLinesCoordinates => _polyLinesCoordinates.value;
+  PolylinePoints polylinePoints = PolylinePoints();
+
+  final RxList<Story> _myths = <Story>[].obs;
+
+  List<Story> get myths => _myths.value;
+  final RxList<Story> _legends = <Story>[].obs;
+
+  List<Story> get legends => _legends.value;
+  final StoriesService _storiesService = StoriesService();
 
   onMapCreated(GoogleMapController googleMapController) {
     _googleMapController = googleMapController;
@@ -57,5 +76,50 @@ class MapController extends GetxController {
       target: LatLng(_locationPosition.value.latitude, _locationPosition.value.longitude),
       zoom: 16.0,
     )));
+  }
+
+  createPolyLines(LatLng tapped) async {
+    _polyLinesCoordinates.clear();
+    PointLatLng origin = PointLatLng(locationPosition.latitude, locationPosition.longitude);
+    PointLatLng destination = PointLatLng(tapped.latitude, tapped.longitude);
+    PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+      'AIzaSyDO2HmEOMlGgqFCfEqIALQY9Gk-Sl6TWWg',
+      origin,
+      destination,
+      travelMode: TravelMode.walking,
+    );
+    log('ALL POLYLINES ARE ${result.points.length}');
+    for (int i = 0; i < result.points.length; i++) {
+      log('latitude: ${result.points[i].latitude}  longitude: ${result.points[i].longitude}');
+      _polyLinesCoordinates.value.add(LatLng(result.points[i].latitude, result.points[i].longitude));
+    }
+    _polyLinesCoordinates.refresh();
+    _googleMapController?.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
+      target: LatLng(_locationPosition.value.latitude, _locationPosition.value.longitude),
+      zoom: 16.0,
+    )));
+  }
+
+  Future getStories() async {
+    _isLoading1.value = true;
+    final resultMyths = await _storiesService.retrieveStories('myths');
+    final resultLegends = await _storiesService.retrieveStories('legends');
+    _myths.value = resultMyths!;
+    _legends.value = resultLegends!;
+    // Uint8List mapMarker= await getBytesFromAssets('./assets/images/myth_image.png', 70);
+    _isLoading1.value = false;
+  }
+
+  // Rx<Uint8List> _mapMarker = Uint8List(70).obs;
+  // Uint8List mapMarker get => _mapMarker.value;
+
+  Future<Uint8List> getBytesFromAssets(String path, int size) async {
+    ByteData data = await rootBundle.load(path);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
+        targetHeight: size);
+    ui.FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
+        .buffer
+        .asUint8List();
   }
 }

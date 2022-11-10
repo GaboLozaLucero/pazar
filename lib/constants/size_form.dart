@@ -7,7 +7,8 @@ class SizeForm {
   static const double radius = 10.0;
   static const double textFieldRadius = 10.0;
   static const double textBackgroundRadius = 5.0;
-  static const double appBarRadius = 25;
+  static const double appBarRadius = 25.0;
+  static const double dialogRadius = 30.0;
 
   //cursor
   static const double cursorHeight = 25.0;

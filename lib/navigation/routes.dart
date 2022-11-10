@@ -9,4 +9,6 @@ abstract class Routes {
   static const legends = '/legends';
   static const myths = '/myths';
   static const story = '/story';
+  static const storyMap = '/story_map';
+  static const profile = '/profile';
 }

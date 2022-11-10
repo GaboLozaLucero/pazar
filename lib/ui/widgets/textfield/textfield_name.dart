@@ -9,10 +9,12 @@ class TextFieldName extends StatelessWidget {
     Key? key,
     required this.controller,
     required this.title,
+    this.hint,
   }) : super(key: key);
 
   final TextEditingController controller;
   final String title;
+  final String? hint;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class TextFieldName extends StatelessWidget {
             return null;
           },
           decoration: InputDecoration(
+            hintText: hint,
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(SizeForm.textFieldRadius),
               borderSide: const BorderSide(

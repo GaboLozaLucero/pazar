@@ -69,7 +69,7 @@ class SingleStoryPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: Text(
                 '${_story.story}',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: SizeForm.textStoriesSize,
                   height: 1.5,
                 ),
@@ -87,7 +87,7 @@ class SingleStoryPage extends StatelessWidget {
             FloatingStoryButton(
               iconData: Icons.map_outlined,
               function: () {
-                Get.toNamed(Routes.map, arguments: [_story.geoPoint?.latitude, _story.geoPoint?.longitude]);
+                Get.toNamed(Routes.storyMap, arguments: _story);
               },
             ),
             FloatingStoryButton(

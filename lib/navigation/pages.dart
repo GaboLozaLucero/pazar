@@ -3,9 +3,12 @@
 import 'package:get/get.dart';
 import 'package:project/bindings/auth_binding.dart';
 import 'package:project/bindings/map_binding.dart';
+import 'package:project/bindings/profile_binding.dart';
 import 'package:project/bindings/single_story_binding.dart';
 import 'package:project/bindings/stories_binding.dart';
+import 'package:project/bindings/story_map_binding.dart';
 import 'package:project/ui/auth_page.dart';
+import 'package:project/ui/profile/profile_page.dart';
 import 'package:project/ui/stories/legends_page.dart';
 import 'package:project/ui/map/map_page.dart';
 import 'package:project/ui/sign_in_page.dart';
@@ -13,6 +16,7 @@ import 'package:project/ui/sign_up_page.dart';
 import 'package:project/ui/home_page.dart';
 import 'package:project/ui/stories/myths_page.dart';
 import 'package:project/ui/stories/single_story_page.dart';
+import 'package:project/ui/stories/story_map/story_map.dart';
 
 part './routes.dart';
 
@@ -57,6 +61,16 @@ class Pages {
       name: Routes.story,
       page: () => SingleStoryPage(),
       binding: SingleStoryBinding(),
+    ),
+    GetPage(
+      name: Routes.storyMap,
+      page: () => StoryMap(),
+      binding: StoryMapBinding(),
+    ),
+    GetPage(
+      name: Routes.profile,
+      page: () => ProfilePage(),
+      binding: AuthBinding(),
     ),
   ];
 }
