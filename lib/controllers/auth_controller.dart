@@ -32,14 +32,16 @@ class AuthController extends GetxController {
 
   User? get currentUser => FirebaseAuth.instance.currentUser;
 
-  signInUser(String email, String password) async {
+  Future<bool> signInUser(String email, String password) async {
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
       _authStatus.value = AuthStatus.loadingResources;
+      await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
       await verifyUser();
       Get.offNamed(Routes.initial);
+      return true;
     } on FirebaseAuthException catch (e) {
       log(e.toString());
+      return false;
     }
   }
 
@@ -88,6 +90,7 @@ class AuthController extends GetxController {
         } else {
           log('this is the user ${currentUser?.email}');
           _appUser.value = AppUser(
+            uid: currentUser?.uid,
             email: user.email,
             name: user.name,
             lastname: user.lastname,
@@ -107,5 +110,16 @@ class AuthController extends GetxController {
     _appUser.value = AppUser();
     _authStatus.value = AuthStatus.unauthenticated;
     log('USER IS OUT');
+  }
+
+  Future<bool> updateUser(AppUser _appUser)async{
+    _authStatus.value = AuthStatus.loadingResources;
+    bool result = await _userService.updateUser(_appUser);
+    await verifyUser();
+    return result;
+  }
+  
+  Future changePassword(String newPassword) async{
+    await FirebaseAuth.instance.currentUser?.updatePassword(newPassword);
   }
 }

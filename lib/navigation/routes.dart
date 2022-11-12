@@ -11,4 +11,6 @@ abstract class Routes {
   static const story = '/story';
   static const storyMap = '/story_map';
   static const profile = '/profile';
+  static const profileInformation = '/profile_information';
+  static const profilePassword = '/profile_password';
 }

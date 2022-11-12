@@ -4,8 +4,8 @@ import 'package:project/constants/size_form.dart';
 import 'package:project/constants/text_styles.dart';
 import 'package:project/ui/widgets/button/custom_elevatedbutton.dart';
 
-class SuccessDialog extends StatelessWidget {
-  const SuccessDialog({Key? key, required this.title, required this.description, required this.function}) : super(key: key);
+class ErrorDialog extends StatelessWidget {
+  const ErrorDialog({Key? key, required this.title, required this.description, required this.function}) : super(key: key);
 
   final String title;
   final String description;
@@ -18,7 +18,7 @@ class SuccessDialog extends StatelessWidget {
       content: Text(description, style: textContentDialog,),
       actions: [
         CustomElevatedButton(
-            color: ConstantColors.successColor,
+            color: ConstantColors.errorColor,
             onPress: () {
               function();
             },

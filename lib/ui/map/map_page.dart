@@ -32,17 +32,19 @@ class MapPage extends GetView<MapController> {
         } else {
           Set<Polyline> polys = {};
           polys.add(Polyline(
-              polylineId: PolylineId('poly id'),
-              points: controller.polyLinesCoordinates,
-              color: Colors.blue,
-              width: 3,
-              consumeTapEvents: true,
-              endCap: Cap.roundCap));
+            polylineId: PolylineId('poly id'),
+            points: controller.polyLinesCoordinates,
+            color: ConstantColors.polyLinesColor,
+            width: 5,
+            consumeTapEvents: true,
+            endCap: Cap.roundCap,
+            startCap: Cap.roundCap,
+          ));
           log('this is my current location after circular indicator: ${_.locationPosition.latitude} ${_.locationPosition.longitude}');
-          return Scaffold(
-            appBar: const CustomAppbar(title: 'Mapa'),
-            body: SafeArea(
-              child: Stack(
+          return SafeArea(
+            child: Scaffold(
+              appBar: const CustomAppbar(title: 'Mapa'),
+              body: Stack(
                 children: [
                   GoogleMap(
                     onMapCreated: (mapController) {
@@ -61,17 +63,13 @@ class MapPage extends GetView<MapController> {
                   ),
                 ],
               ),
-            ),
-            floatingActionButton: Row(
-              children: [
-                FloatingStoryButton(
-                  iconData: Icons.my_location,
-                  function: () {
-                    log('this is pressed');
-                    controller.currentLocation();
-                  },
-                ),
-              ],
+              floatingActionButton: FloatingStoryButton(
+                iconData: Icons.my_location,
+                function: () {
+                  log('this is pressed');
+                  controller.currentLocation();
+                },
+              ),
             ),
           );
         }
@@ -80,7 +78,7 @@ class MapPage extends GetView<MapController> {
   }
 
   Set<Marker> _getMarkers() {
-    Set<Marker> points = new Set();
+    Set<Marker> points = {};
     if (controller.myths.isNotEmpty || controller.legends.isNotEmpty) {
       for (var myth in controller.myths) {
         points.add(
@@ -126,7 +124,7 @@ class MapPage extends GetView<MapController> {
   _showDialog(Story story) {
     Get.dialog(
       AlertDialog(
-        title: Text('${story.name}', textAlign: TextAlign.center),
+        title: Text('${story.name}'.toUpperCase(), style: textTitleStories, textAlign: TextAlign.center),
         content: SizedBox(
           height: Get.height * 0.4,
           child: Column(
@@ -176,20 +174,12 @@ class MapPage extends GetView<MapController> {
         ),
         actionsAlignment: MainAxisAlignment.center,
         actions: [
-          OutlinedButton(
-            style: OutlinedButton.styleFrom(
-              backgroundColor: ConstantColors.buttonColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(SizeForm.buttonRadius),
-              ),
-            ),
-            onPressed: () {
+          CustomElevatedButton(
+            color: ConstantColors.buttonColor,
+            onPress: () {
               Get.back();
             },
-            child: Text(
-              'Salir',
-              style: textCardStories,
-            ),
+            text: 'Salir',
           ),
         ],
         shape: RoundedRectangleBorder(

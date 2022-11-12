@@ -12,12 +12,16 @@ class FloatingStoryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: SizeForm.margin/2),
+      padding: const EdgeInsets.symmetric(horizontal: SizeForm.margin / 2),
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
-          shape: const CircleBorder(),side: BorderSide(width: 1.0, color: ConstantColors.floatingSideButtonColor),
+          shape: const CircleBorder(),
+          side: const BorderSide(
+            width: 2,
+            color: ConstantColors.floatingSideButtonColor,
+          ),
           alignment: Alignment.center,
-          padding: const EdgeInsets.all(SizeForm.margin/1.5),
+          padding: const EdgeInsets.all(SizeForm.margin / 1.5),
         ),
         onPressed: () {
           function();

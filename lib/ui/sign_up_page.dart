@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
+import 'package:project/constants/text_styles.dart';
 import 'package:project/controllers/auth_controller.dart';
 import 'package:project/data/models/app_user.dart';
 import 'package:project/ui/widgets/button/custom_elevatedbutton.dart';
@@ -31,83 +32,103 @@ class SignUpPage extends GetView<AuthController> {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          padding: const EdgeInsets.all(SizeForm.margin),
           physics: const BouncingScrollPhysics(),
           reverse: false,
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Column(
             children: [
               SizedBox(
-                height: _height * 0.15,
                 width: _width,
-                child: Image.asset('./assets/images/logo.png'),
+                child: Image.asset(
+                  './assets/images/logos.png',
+                  fit: BoxFit.fill,
+                ),
               ),
               SizedBox(
-                height: _height * 0.02,
+                height: _height * 0.05,
               ),
-              SizedBox(
-                height: _height * 0.6,
-                width: _width,
-                child: SingleChildScrollView(
-                  physics: const BouncingScrollPhysics(),
-                  keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          children: [
-                            TextFieldName(
-                              controller: _nameController,
-                              title: 'Nombre',
-                            ),
-                            TextFieldName(
-                              controller: _lastnameController,
-                              title: 'Apellido',
-                            ),
-                            TextFieldEmail(
-                              controller: _emailController,
-                              title: 'Correo electrónico',
-                            ),
-                            TextFieldPassword(
-                              controller: _passwordController,
-                              title: 'Contraseña',
-                            ),
-                            TextFieldPassword(
-                              controller: _verifyPasswordController,
-                              title: 'Verifica tu contraseña',
-                            ),
-                          ],
-                        ),
-                      ],
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: SizeForm.margin),
+                child: SizedBox(
+                  height: _height * 0.6,
+                  width: _width,
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Column(
+                            children: [
+                              TextFieldName(
+                                controller: _nameController,
+                                title: 'Nombre',
+                              ),
+                              TextFieldName(
+                                controller: _lastnameController,
+                                title: 'Apellido',
+                              ),
+                              TextFieldEmail(
+                                controller: _emailController,
+                                title: 'Correo electrónico',
+                              ),
+                              TextFieldPassword(
+                                controller: _passwordController,
+                                title: 'Contraseña',
+                              ),
+                              TextFieldPassword(
+                                controller: _verifyPasswordController,
+                                title: 'Verifica tu contraseña',
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '¿Ya tienes una cuenta?',
+                    style: textNormal,
+                  ),
+                  CustomTextButton(
+                    text: 'Ingresa aquí',
+                    onPress: () => Get.offAllNamed(Routes.signIn),
+                    style: const TextStyle(
+                      fontSize: 12.0,
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: SizeForm.margin),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
               CustomElevatedButton(
                 color: ConstantColors.buttonSignUpColor,
                 onPress: () {
                   if (_formKey.currentState?.validate() == false) {
                     return;
                   } else {
-                    _formKey.currentState?.save();
-                    signUp();
+                    if (_passwordController.text == _verifyPasswordController.text) {
+                      _formKey.currentState?.save();
+                      signUp();
+                    }
+                    return;
                   }
                 },
-                text: 'registrase',
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    '¿Ya tienes una cuenta?',
-                  ),
-                  CustomTextButton(
-                    text: 'Ingresa aquí',
-                    onPress: () => Get.toNamed(Routes.signIn),
-                  ),
-                ],
+                text: 'registrarse',
               ),
             ],
           ),

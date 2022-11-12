@@ -55,4 +55,19 @@ class UserService {
       return false;
     }
   }
+
+  Future<bool> updateUser(AppUser appUser) async {
+    try {
+      CloudFirestore.DocumentReference reference = _db.collection(usersPath).doc(appUser.uid);
+      await _db.runTransaction(
+        (transaction) => transaction.get(reference).then(
+              (value) => transaction.update(reference, {"name": appUser.name, "lastname": appUser.lastname}),
+            ),
+      );
+      return true;
+    } catch (e) {
+      log('error updating user');
+      return false;
+    }
+  }
 }

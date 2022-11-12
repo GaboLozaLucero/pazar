@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
-import 'package:project/controllers/auth_controller.dart';
 import 'package:project/navigation/pages.dart';
 import 'package:project/ui/widgets/card/main_menu_card.dart';
 
@@ -23,7 +22,7 @@ class HomePage extends StatelessWidget {
                 height: _height * 0.15,
                 width: double.infinity,
                 child: Image.asset(
-                  './assets/images/logo2.png',
+                  './assets/images/logos.png',
                   fit: BoxFit.fill,
                 ),
               ),

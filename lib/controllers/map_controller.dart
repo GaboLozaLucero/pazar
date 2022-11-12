@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'dart:developer';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
@@ -11,7 +13,7 @@ import 'package:project/services/stories_service.dart';
 
 class MapController extends GetxController {
   GoogleMapController? _googleMapController;
-  Location location = Location();
+  Location location = Location(); //user location
 
   // ignore: prefer_final_fields
   RxBool _isLoading1 = true.obs;
@@ -19,7 +21,7 @@ class MapController extends GetxController {
   bool get isLoading1 => _isLoading1.value;
 
   // ignore: prefer_final_fields
-  Rx<LatLng> _locationPosition = const LatLng(-16.49817713198687, -68.133475729177).obs;
+  Rx<LatLng> _locationPosition = const LatLng(-16.49817713198687, -68.133475729177).obs;  //default location where map starts
 
   LatLng get locationPosition => _locationPosition.value;
 
@@ -35,6 +37,12 @@ class MapController extends GetxController {
 
   List<Story> get legends => _legends.value;
   final StoriesService _storiesService = StoriesService();
+
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+  }
 
   onMapCreated(GoogleMapController googleMapController) {
     _googleMapController = googleMapController;
@@ -83,12 +91,11 @@ class MapController extends GetxController {
     PointLatLng origin = PointLatLng(locationPosition.latitude, locationPosition.longitude);
     PointLatLng destination = PointLatLng(tapped.latitude, tapped.longitude);
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      'AIzaSyDO2HmEOMlGgqFCfEqIALQY9Gk-Sl6TWWg',
+      'AIzaSyDO2HmEOMlGgqFCfEqIALQY9Gk-Sl6TWWg', //TODO hide APIKEY
       origin,
       destination,
       travelMode: TravelMode.walking,
     );
-    log('ALL POLYLINES ARE ${result.points.length}');
     for (int i = 0; i < result.points.length; i++) {
       log('latitude: ${result.points[i].latitude}  longitude: ${result.points[i].longitude}');
       _polyLinesCoordinates.value.add(LatLng(result.points[i].latitude, result.points[i].longitude));
@@ -100,7 +107,7 @@ class MapController extends GetxController {
     )));
   }
 
-  Future getStories() async {
+  Future getStories() async { //retrieves all stories and separate them in myths and legends
     _isLoading1.value = true;
     final resultMyths = await _storiesService.retrieveStories('myth');
     final resultLegends = await _storiesService.retrieveStories('legend');

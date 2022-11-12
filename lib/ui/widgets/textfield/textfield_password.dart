@@ -29,11 +29,15 @@ class TextFieldPassword extends StatelessWidget {
           style: textFormFieldTitleStyle,
         ),
         TextFormField(
+
           controller: controller,
           keyboardType: TextInputType.text,
           validator: (value) {
             if (value!.isEmpty) {
               return 'El campo debe ser llenado';
+            }
+            if(value.length < 6 ){
+              return 'La contraseña debe tener al menos 6 caracteres';
             }
             return null;
           },

@@ -27,6 +27,7 @@ class TextFieldName extends StatelessWidget {
           style: textFormFieldTitleStyle,
         ),
         TextFormField(
+          textCapitalization: TextCapitalization.sentences,
           controller: controller,
           keyboardType: TextInputType.emailAddress,
           validator: (value) {

@@ -1,9 +1,12 @@
+import 'package:ar_flutter_plugin/managers/ar_anchor_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:project/constants/constant_colors.dart';
 import 'package:project/controllers/map_controller.dart';
 import 'package:project/data/models/stories.dart';
 import 'package:project/ui/widgets/appbar/custom_appbar.dart';
+import 'package:project/ui/widgets/button/custom_elevatedbutton.dart';
 import 'package:project/ui/widgets/button/floating_story_button.dart';
 import 'package:project/ui/widgets/loading/circular_loading_indicator.dart';
 import 'dart:developer';
@@ -19,17 +22,20 @@ class StoryMap extends GetView<MapController> {
       await controller.getUserLocation();
     }, builder: (_) {
       if (_.isLoading1) {
-        return const CircularLoadingIndicator(text: 'Cargando mapa',
+        return const CircularLoadingIndicator(
+          text: 'Cargando mapa',
         );
       }
       Set<Polyline> polys = {};
       polys.add(Polyline(
-          polylineId: PolylineId('poly id'),
-          points: controller.polyLinesCoordinates,
-          color: Colors.blue,
-          width: 3,
-          consumeTapEvents: true,
-          endCap: Cap.roundCap));
+        polylineId: PolylineId('poly id'),
+        points: controller.polyLinesCoordinates,
+        color: Colors.blue,
+        width: 3,
+        consumeTapEvents: true,
+        endCap: Cap.roundCap,
+        startCap: Cap.roundCap,
+      ));
       return Scaffold(
         appBar: const CustomAppbar(title: 'Mapa'),
         body: SafeArea(
@@ -53,7 +59,9 @@ class StoryMap extends GetView<MapController> {
             ],
           ),
         ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FloatingStoryButton(
               iconData: Icons.my_location,
@@ -62,6 +70,10 @@ class StoryMap extends GetView<MapController> {
                 controller.currentLocation();
               },
             ),
+            FloatingStoryButton(
+              iconData: Icons.camera_alt_outlined,
+              function: () {},
+            ),
           ],
         ),
       );
@@ -69,7 +81,7 @@ class StoryMap extends GetView<MapController> {
   }
 
   Set<Marker> _getMarkers() {
-    Set<Marker> points = new Set();
+    Set<Marker> points = {};
     points.add(
       Marker(
           markerId: MarkerId(_story.name!),
@@ -94,5 +106,21 @@ class StoryMap extends GetView<MapController> {
 
   _getPolyLines(LatLng tapped) async {
     await controller.createPolyLines(tapped);
+  }
+
+  _showDialog() {
+    Get.dialog(
+      AlertDialog(
+        content: const Text('Presiona sobre el marcador para obtener la ruta'),
+        actions: [
+          CustomElevatedButton(
+              color: ConstantColors.alertColor,
+              onPress: () {
+                Get.back();
+              },
+              text: 'OK'),
+        ],
+      ),
+    );
   }
 }

@@ -115,7 +115,7 @@ class SingleStoryPage extends StatelessWidget {
             ),
           ],
         ),
-        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

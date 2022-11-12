@@ -41,5 +41,23 @@ TextStyle textCardStories = const TextStyle(
 TextStyle textTitleStories = const TextStyle(
   color: Colors.black,
   fontSize: SizeForm.textTitleSize,
-  fontWeight: FontWeight.bold
+  fontWeight: FontWeight.bold,
+);
+
+TextStyle textErrorDialog = const TextStyle(
+  color: ConstantColors.errorColor,
+  fontSize: SizeForm.textTitleSize,
+  fontWeight: FontWeight.bold,
+);
+
+TextStyle textContentDialog = const TextStyle(
+  color: Colors.black54,
+  fontSize: SizeForm.textDescriptionSize,
+  overflow: TextOverflow.fade,
+);
+
+TextStyle textNormal = const TextStyle(
+  color: Colors.black45,
+  fontSize: 12,
+  overflow: TextOverflow.visible,
 );

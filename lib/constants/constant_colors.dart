@@ -8,7 +8,7 @@ class ConstantColors {
 
   //button
   static const Color buttonSignInColor = Color(0xFF009FA3);
-  static const Color buttonSignUpColor = Color(0xFF007BB7);
+  static const Color buttonSignUpColor = Color(0xFF007BA7);
   static const Color textButtonColor = Color(0xFF00A3FF);
   static const Color floatingButtonColor = Color(0xFFD67130);
   static const Color floatingSideButtonColor = Color(0xFFF6B05C);
@@ -38,4 +38,7 @@ class ConstantColors {
   // static const Color errorColor = Color(0xFFF23406);
   static const Color errorColor = Color(0xFFB25456);
   static const Color alertColor = Color(0xFFD1BE01);
+
+  //polyLines
+  static const Color polyLinesColor = Color(0xFF1985A1);
 }
