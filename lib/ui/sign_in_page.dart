@@ -4,7 +4,6 @@ import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
 import 'package:project/constants/text_styles.dart';
 import 'package:project/controllers/auth_controller.dart';
-import 'package:project/ui/widgets/appbar/custom_appbar.dart';
 import 'package:project/ui/widgets/button/custom_elevatedbutton.dart';
 import 'package:project/ui/widgets/button/custom_textbutton.dart';
 import 'package:project/ui/widgets/dialog/error_dialog.dart';
@@ -99,8 +98,9 @@ class SignInPage extends GetView<AuthController> {
                   CustomTextButton(
                     text: 'Regístrate aquí',
                     onPress: () => Get.toNamed(Routes.signUp),
-                    style: const TextStyle(
+                    textStyle: const TextStyle(
                       fontSize: 12.0,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],

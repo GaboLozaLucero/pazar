@@ -35,7 +35,7 @@ class StoriesService {
     }
   }
 
-  Future<List<Story>?> retrieveStories(String type) async {
+  Future<List<Story>?> retrieveStoriesByType(String type) async {
     try {
       //only retrieve stories that admin set as active
       final storiesQuery = await _db

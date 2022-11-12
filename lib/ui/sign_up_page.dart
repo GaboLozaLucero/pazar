@@ -60,29 +60,25 @@ class SignUpPage extends GetView<AuthController> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
-                            children: [
-                              TextFieldName(
-                                controller: _nameController,
-                                title: 'Nombre',
-                              ),
-                              TextFieldName(
-                                controller: _lastnameController,
-                                title: 'Apellido',
-                              ),
-                              TextFieldEmail(
-                                controller: _emailController,
-                                title: 'Correo electrónico',
-                              ),
-                              TextFieldPassword(
-                                controller: _passwordController,
-                                title: 'Contraseña',
-                              ),
-                              TextFieldPassword(
-                                controller: _verifyPasswordController,
-                                title: 'Verifica tu contraseña',
-                              ),
-                            ],
+                          TextFieldName(
+                            controller: _nameController,
+                            title: 'Nombre',
+                          ),
+                          TextFieldName(
+                            controller: _lastnameController,
+                            title: 'Apellido',
+                          ),
+                          TextFieldEmail(
+                            controller: _emailController,
+                            title: 'Correo electrónico',
+                          ),
+                          TextFieldPassword(
+                            controller: _passwordController,
+                            title: 'Contraseña',
+                          ),
+                          TextFieldPassword(
+                            controller: _verifyPasswordController,
+                            title: 'Verifica tu contraseña',
                           ),
                         ],
                       ),
@@ -100,8 +96,9 @@ class SignUpPage extends GetView<AuthController> {
                   CustomTextButton(
                     text: 'Ingresa aquí',
                     onPress: () => Get.offAllNamed(Routes.signIn),
-                    style: const TextStyle(
+                    textStyle: const TextStyle(
                       fontSize: 12.0,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
@@ -112,25 +109,20 @@ class SignUpPage extends GetView<AuthController> {
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         floatingActionButton: Padding(
           padding: const EdgeInsets.symmetric(horizontal: SizeForm.margin),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              CustomElevatedButton(
-                color: ConstantColors.buttonSignUpColor,
-                onPress: () {
-                  if (_formKey.currentState?.validate() == false) {
-                    return;
-                  } else {
-                    if (_passwordController.text == _verifyPasswordController.text) {
-                      _formKey.currentState?.save();
-                      signUp();
-                    }
-                    return;
-                  }
-                },
-                text: 'registrarse',
-              ),
-            ],
+          child: CustomElevatedButton(
+            color: ConstantColors.buttonSignUpColor,
+            onPress: () {
+              if (_formKey.currentState?.validate() == false) {
+                return;
+              } else {
+                if (_passwordController.text == _verifyPasswordController.text) {
+                  _formKey.currentState?.save();
+                  signUp();
+                }
+                return;
+              }
+            },
+            text: 'registrarse',
           ),
         ),
       ),

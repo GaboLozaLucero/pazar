@@ -2,13 +2,13 @@
 
 import 'package:get/get.dart';
 import 'package:project/bindings/auth_binding.dart';
+import 'package:project/bindings/liked_places_binding.dart';
 import 'package:project/bindings/map_binding.dart';
-import 'package:project/bindings/profile_binding.dart';
 import 'package:project/bindings/single_story_binding.dart';
 import 'package:project/bindings/stories_binding.dart';
 import 'package:project/bindings/story_map_binding.dart';
-import 'package:project/controllers/profile_controller.dart';
 import 'package:project/ui/auth_page.dart';
+import 'package:project/ui/profile/liked_places_page.dart';
 import 'package:project/ui/profile/profile_information/profile_information_page.dart';
 import 'package:project/ui/profile/profile_information/profile_password.dart';
 import 'package:project/ui/profile/profile_page.dart';
@@ -83,6 +83,11 @@ class Pages {
       name: Routes.profilePassword,
       page: () => ProfilePassword(),
       binding: AuthBinding(),
+    ),
+    GetPage(
+      name: Routes.likedPlaces,
+      page: () => LikedPlacesPage(),
+      binding: LikedPlacesBinding(),
     ),
   ];
 }

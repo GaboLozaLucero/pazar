@@ -21,9 +21,9 @@ class ProfilePassword extends GetView<AuthController> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      appBar: CustomAppbar(title: ''),
+      appBar: const CustomAppbar(title: ''),
       body: Padding(
-        padding: EdgeInsets.all(SizeForm.margin),
+        padding: const EdgeInsets.all(SizeForm.margin),
         child: Form(
             key: _formKey,
             child: Column(
@@ -44,7 +44,7 @@ class ProfilePassword extends GetView<AuthController> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
-        padding: EdgeInsets.symmetric(horizontal: SizeForm.margin),
+        padding: const EdgeInsets.symmetric(horizontal: SizeForm.margin),
         child: CustomElevatedButton(
             color: ConstantColors.alertColor,
             onPress: () async {

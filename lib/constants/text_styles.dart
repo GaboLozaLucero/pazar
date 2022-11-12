@@ -42,12 +42,28 @@ TextStyle textTitleStories = const TextStyle(
   color: Colors.black,
   fontSize: SizeForm.textTitleSize,
   fontWeight: FontWeight.bold,
+  overflow: TextOverflow.fade,
 );
 
 TextStyle textErrorDialog = const TextStyle(
   color: ConstantColors.errorColor,
   fontSize: SizeForm.textTitleSize,
   fontWeight: FontWeight.bold,
+  overflow: TextOverflow.fade,
+);
+
+TextStyle textSuccessDialog = const TextStyle(
+  color: ConstantColors.successColor,
+  fontSize: SizeForm.textTitleSize,
+  fontWeight: FontWeight.bold,
+  overflow: TextOverflow.fade,
+);
+
+TextStyle textInformationDialog = const TextStyle(
+  color: ConstantColors.alertColor,
+  fontSize: SizeForm.textTitleSize,
+  fontWeight: FontWeight.bold,
+  overflow: TextOverflow.fade,
 );
 
 TextStyle textContentDialog = const TextStyle(
@@ -56,8 +72,14 @@ TextStyle textContentDialog = const TextStyle(
   overflow: TextOverflow.fade,
 );
 
+TextStyle profileButtons = const TextStyle(
+  color: Colors.black87,
+  fontSize: SizeForm.textDescriptionSize,
+  overflow: TextOverflow.fade,
+);
+
 TextStyle textNormal = const TextStyle(
   color: Colors.black45,
-  fontSize: 12,
-  overflow: TextOverflow.visible,
+  fontSize: SizeForm.textStoriesSize,
+  overflow: TextOverflow.ellipsis,
 );

@@ -4,13 +4,14 @@ import 'package:get/get.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
 import 'package:project/constants/text_styles.dart';
+import 'package:project/controllers/single_story_controller.dart';
 import 'package:project/data/models/stories.dart';
 import 'package:project/navigation/pages.dart';
 import 'package:project/ui/widgets/appbar/custom_appbar.dart';
 
 import 'package:project/ui/widgets/button/floating_story_button.dart';
 
-class SingleStoryPage extends StatelessWidget {
+class SingleStoryPage extends GetView<SingleStoryController> {
   SingleStoryPage({Key? key}) : super(key: key);
 
   final Story _story = Get.arguments;
@@ -19,11 +20,11 @@ class SingleStoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: CustomAppbar(title: ''),
+        appBar: const CustomAppbar(title: ''),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               height: Get.height * 0.2,
               width: double.infinity,
               // decoration: BoxDecoration(
@@ -102,16 +103,6 @@ class SingleStoryPage extends StatelessWidget {
                 ],
                 totalRepeatCount: 1,
               ),
-              // Text(
-              //   '${_story.story}',
-              //   style: const TextStyle(
-              //     fontSize: SizeForm.textStoriesSize,
-              //     height: 1.5,
-              //   ),
-              //   textAlign: TextAlign.justify,
-              //   overflow: TextOverflow.visible,
-              //   softWrap: true,
-              // ),
             ),
           ],
         ),
@@ -119,6 +110,19 @@ class SingleStoryPage extends StatelessWidget {
         floatingActionButton: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            Obx(() => (controller.isLike)
+                ? FloatingStoryButton(
+                    iconData: Icons.thumb_up_off_alt_rounded,
+                    function: () {
+                      controller.dislikeStory(_story);
+                    },
+                  )
+                : FloatingStoryButton(
+                    iconData: Icons.thumb_up_alt_outlined,
+                    function: () {
+                      controller.likeStory(_story);
+                    },
+                  )),
             FloatingStoryButton(
               iconData: Icons.map_outlined,
               function: () {

@@ -36,7 +36,7 @@ class AuthController extends GetxController {
     try {
       _authStatus.value = AuthStatus.loadingResources;
       await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-      await verifyUser();
+      await verifyUser(); //verifies a user by retrieving their information
       Get.offNamed(Routes.initial);
       return true;
     } on FirebaseAuthException catch (e) {
@@ -48,35 +48,33 @@ class AuthController extends GetxController {
   Future<bool> registerUser(AppUser appUser, String password) async {
     bool isCreated = false;
     _authStatus.value = AuthStatus.loadingResources;
-    if (appUser != null) {
-      try {
-        final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: appUser.email.toString(),
-          password: password,
-        );
-        log(userCredential.toString());
-        appUser.uid = userCredential.user?.uid;
-        isCreated = await _userService.createUser(appUser);
-        signInUser(appUser.email.toString(), password);
-        return isCreated;
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'weak-password') {
-          log('The password provided is too weak.');
-        } else if (e.code == 'email-already-in-use') {
-          log('The account already exists for that email.');
-        }
-        _authStatus.value = AuthStatus.unauthenticated;
-        return isCreated;
-      } catch (e) {
-        log(e.toString());
-        _authStatus.value = AuthStatus.unauthenticated;
-        return isCreated;
+    try {
+      final userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: appUser.email.toString(),
+        password: password,
+      );
+      log(userCredential.toString());
+      appUser.uid = userCredential.user?.uid;
+      isCreated = await _userService.createUser(appUser);
+      signInUser(appUser.email.toString(), password);
+      return isCreated;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        log('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        log('The account already exists for that email.');
       }
+      _authStatus.value = AuthStatus.unauthenticated;
+      return isCreated;
+    } catch (e) {
+      log(e.toString());
+      _authStatus.value = AuthStatus.unauthenticated;
+      return isCreated;
     }
-    return isCreated;
   }
 
   Future verifyUser() async {
+    _authStatus.value = AuthStatus.loadingResources;
     log('${_authStatus.value} this is the value');
     log('$currentUser this is the user');
     if (currentUser != null) {

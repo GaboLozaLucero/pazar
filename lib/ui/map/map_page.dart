@@ -32,7 +32,7 @@ class MapPage extends GetView<MapController> {
         } else {
           Set<Polyline> polys = {};
           polys.add(Polyline(
-            polylineId: PolylineId('poly id'),
+            polylineId: const PolylineId('poly id'),
             points: controller.polyLinesCoordinates,
             color: ConstantColors.polyLinesColor,
             width: 5,

@@ -14,7 +14,7 @@ class SuccessDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(title, style: textErrorDialog,),
+      title: Text(title, style: textSuccessDialog,),
       content: Text(description, style: textContentDialog,),
       actions: [
         CustomElevatedButton(

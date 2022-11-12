@@ -109,8 +109,8 @@ class MapController extends GetxController {
 
   Future getStories() async { //retrieves all stories and separate them in myths and legends
     _isLoading1.value = true;
-    final resultMyths = await _storiesService.retrieveStories('myth');
-    final resultLegends = await _storiesService.retrieveStories('legend');
+    final resultMyths = await _storiesService.retrieveStoriesByType('myth');
+    final resultLegends = await _storiesService.retrieveStoriesByType('legend');
     _myths.value = resultMyths!;
     _legends.value = resultLegends!;
     // Uint8List mapMarker= await getBytesFromAssets('./assets/images/myth_image.png', 70);

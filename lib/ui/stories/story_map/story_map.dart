@@ -1,4 +1,3 @@
-import 'package:ar_flutter_plugin/managers/ar_anchor_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -30,8 +29,8 @@ class StoryMap extends GetView<MapController> {
       polys.add(Polyline(
         polylineId: PolylineId('poly id'),
         points: controller.polyLinesCoordinates,
-        color: Colors.blue,
-        width: 3,
+        color: ConstantColors.polyLinesColor,
+        width: 5,
         consumeTapEvents: true,
         endCap: Cap.roundCap,
         startCap: Cap.roundCap,

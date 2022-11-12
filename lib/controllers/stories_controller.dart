@@ -14,7 +14,7 @@ class StoriesController extends GetxController{
 
   Future retrieveStories(String type) async {
     _loading.value = true;
-    final result = await _storiesService.retrieveStories(type);
+    final result = await _storiesService.retrieveStoriesByType(type);
     _listStories.value = result!;
     _loading.value = false;
   }

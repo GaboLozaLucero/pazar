@@ -4,26 +4,23 @@ import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
 import 'package:project/constants/text_styles.dart';
 import 'package:project/controllers/auth_controller.dart';
-import 'package:project/controllers/profile_controller.dart';
 import 'package:project/data/enum/auth_status.dart';
 import 'package:project/data/models/app_user.dart';
 import 'package:project/ui/widgets/appbar/custom_appbar.dart';
 import 'package:project/ui/widgets/button/custom_elevatedbutton.dart';
+import 'package:project/ui/widgets/button/row_buttons.dart';
 import 'package:project/ui/widgets/dialog/alert_dialog.dart';
 import 'package:project/ui/widgets/dialog/error_dialog.dart';
 import 'package:project/ui/widgets/dialog/success_dialog.dart';
-import 'package:project/ui/widgets/loading/circular_loading_indicator.dart';
-import 'package:project/ui/widgets/textfield/textfield_email.dart';
 import 'package:project/ui/widgets/textfield/textfield_name.dart';
-import 'dart:developer';
 
 class ProfileInformationPage extends GetView<AuthController> {
   ProfileInformationPage({Key? key}) : super(key: key);
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _lastnameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
 
+  // final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +32,12 @@ class ProfileInformationPage extends GetView<AuthController> {
           child: Obx(
             () {
               return (controller.authStatus == AuthStatus.loadingResources)
-                  ? const CircularLoadingIndicator(text: 'Cargando información')
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                        color: ConstantColors.buttonColor,
+                        strokeWidth: SizeForm.radius,
+                      ),
+                    )
                   : Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -60,10 +62,16 @@ class ProfileInformationPage extends GetView<AuthController> {
           child: CustomElevatedButton(
             color: ConstantColors.alertColor,
             onPress: () {
-              if (_nameController.text.isEmpty && _lastnameController.text.isEmpty) {
+              if (_nameController.text == controller.appUser.name || _lastnameController.text == controller.appUser.lastname) {
+                noChanges();
+              } else if (_nameController.text.isEmpty && _lastnameController.text.isEmpty) {
                 noChanges();
               } else {
-                AppUser appUser = AppUser(name: controller.appUser.name, lastname: controller.appUser.lastname, email: controller.appUser.email, uid: controller.appUser.uid);
+                AppUser appUser = AppUser(
+                    name: controller.appUser.name,
+                    lastname: controller.appUser.lastname,
+                    email: controller.appUser.email,
+                    uid: controller.appUser.uid);
                 if (_nameController.text.isNotEmpty) {
                   appUser.name = _nameController.text;
                 }
@@ -95,10 +103,13 @@ class ProfileInformationPage extends GetView<AuthController> {
   saveInformation(AppUser appUser) {
     Get.dialog(
       AlertDialog(
-        title: Text('¿Cambiar información?'),
+        title: Text(
+          '¿Cambiar información?',
+          style: textInformationDialog,
+        ),
         actions: [
-          OutlinedButton(
-            onPressed: () async {
+          RowButtons(
+            firstFunction: () async {
               bool result = await controller.updateUser(appUser);
               if (result) {
                 Get.back();
@@ -110,16 +121,18 @@ class ProfileInformationPage extends GetView<AuthController> {
                 _errorInformation();
               }
             },
-            child: Text('Sí'),
-          ),
-          OutlinedButton(
-            onPressed: () {
+            firstColor: ConstantColors.alertColor,
+            firstText: 'sí',
+            secondFunction: () {
               Get.back();
             },
-            child: Text('No'),
-          ),
+            secondColor: ConstantColors.errorColor,
+            secondText: 'no',
+          )
         ],
-        actionsAlignment: MainAxisAlignment.center,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(SizeForm.dialogRadius),
+        ),
       ),
     );
   }
@@ -136,5 +149,15 @@ class ProfileInformationPage extends GetView<AuthController> {
     );
   }
 
-  _errorInformation() {}
+  _errorInformation() {
+    Get.dialog(
+      ErrorDialog(
+        title: 'Error',
+        description: 'Ha habido un error.',
+        function: () {
+          Get.back();
+        },
+      ),
+    );
+  }
 }

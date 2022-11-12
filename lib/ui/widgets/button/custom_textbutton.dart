@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:project/constants/constant_colors.dart';
 
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     Key? key,
     required this.text,
     required this.onPress,
-    this.style,
+    this.textStyle,
   }) : super(key: key);
 
   final String text;
   final Function onPress;
-  final TextStyle? style;
+  final TextStyle? textStyle;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +19,9 @@ class CustomTextButton extends StatelessWidget {
         onPress();
       },
       child: Text(
-        text,
-        style: style,
+        text.toUpperCase(),
+        style: textStyle,
+        textAlign: TextAlign.center,
       ),
     );
   }
