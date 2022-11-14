@@ -21,7 +21,8 @@ class Story {
         address: data?["address"],
         story: data?["story"],
         imageUrl: data?["image"],
-        active: data?["active"]);
+        active: data?["active"],
+        type: data?["type"]);
   }
 
   Map<String, dynamic> toFirestore() => {
@@ -31,7 +32,8 @@ class Story {
         if (address != null) "address": address,
         if (story != null) "story": story,
         if (imageUrl != null) "image": imageUrl,
-        if (active != null) "active": active
+        if (active != null) "active": active,
+        if (type != null) "type": type,
       };
 
   @override

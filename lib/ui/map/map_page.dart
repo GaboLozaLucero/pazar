@@ -96,7 +96,7 @@ class MapPage extends GetView<MapController> {
                 _showDialog(myth);
               },
               draggable: false,
-              icon: BitmapDescriptor.defaultMarkerWithHue(180)),
+              icon: BitmapDescriptor.fromBytes(controller.mapMarkerMyth),),
         );
       }
       for (var legend in controller.legends) {
@@ -114,7 +114,7 @@ class MapPage extends GetView<MapController> {
             _showDialog(legend);
           },
           draggable: false,
-          icon: BitmapDescriptor.defaultMarker,
+          icon: BitmapDescriptor.fromBytes(controller.mapMarkerLegend),
         ));
       }
     }

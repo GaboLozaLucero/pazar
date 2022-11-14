@@ -18,7 +18,10 @@ class StoryMap extends GetView<MapController> {
   @override
   Widget build(BuildContext context) {
     return GetX<MapController>(initState: (state) async {
-      await controller.getUserLocation();
+      // WidgetsBinding.instance.addPostFrameCallback((_) async { // builder is not created, until this happens
+        await controller.getUserLocation();
+        await controller.getStories();
+      // });
     }, builder: (_) {
       if (_.isLoading1) {
         return const CircularLoadingIndicator(
@@ -83,22 +86,25 @@ class StoryMap extends GetView<MapController> {
     Set<Marker> points = {};
     points.add(
       Marker(
-          markerId: MarkerId(_story.name!),
-          position: LatLng(_story.geoPoint!.latitude, _story.geoPoint!.longitude),
-          anchor: const Offset(0.5, 0.5),
-          // infoWindow: InfoWindow(
-          //   title: '${myth.address}',
-          //   onTap: () {
-          //     _showDialog(myth);
-          //   },
-          // ),
-          onTap: () {
-            controller.polyLinesCoordinates.clear();
-            LatLng tappedPoint = LatLng(_story.geoPoint!.latitude, _story.geoPoint!.longitude);
-            _getPolyLines(tappedPoint);
-          },
-          draggable: false,
-          icon: BitmapDescriptor.defaultMarkerWithHue(180)),
+        markerId: MarkerId(_story.name!),
+        position: LatLng(_story.geoPoint!.latitude, _story.geoPoint!.longitude),
+        anchor: const Offset(0.5, 0.5),
+        // infoWindow: InfoWindow(
+        //   title: '${myth.address}',
+        //   onTap: () {
+        //     _showDialog(myth);
+        //   },
+        // ),
+        onTap: () {
+          controller.polyLinesCoordinates.clear();
+          LatLng tappedPoint = LatLng(_story.geoPoint!.latitude, _story.geoPoint!.longitude);
+          _getPolyLines(tappedPoint);
+        },
+        draggable: false,
+        icon: (_story.type == 'myth')
+            ? BitmapDescriptor.fromBytes(controller.mapMarkerMyth)
+            : BitmapDescriptor.fromBytes(controller.mapMarkerLegend),
+      ),
     );
     return points;
   }

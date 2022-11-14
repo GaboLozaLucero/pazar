@@ -38,10 +38,23 @@ class MapController extends GetxController {
   List<Story> get legends => _legends.value;
   final StoriesService _storiesService = StoriesService();
 
+  final Rx<Uint8List> _mapMarkerLegend = Uint8List(70).obs;
+  Uint8List get mapMarkerLegend => _mapMarkerLegend.value;
+
+  final Rx<Uint8List> _mapMarkerMyth = Uint8List(70).obs;
+  Uint8List get mapMarkerMyth => _mapMarkerMyth.value;
+
   @override
-  void onInit() {
-    // TODO: implement onInit
+  void onInit() async{
+    _mapMarkerLegend.value = await getBytesFromAssets('./././assets/images/legend_image.png', 100);
+    _mapMarkerMyth.value = await getBytesFromAssets('./././assets/images/myth_image.png', 100);
+    update();
     super.onInit();
+  }
+
+  @override
+  void onClose() async{
+    super.onClose();
   }
 
   onMapCreated(GoogleMapController googleMapController) {
@@ -97,7 +110,7 @@ class MapController extends GetxController {
       travelMode: TravelMode.walking,
     );
     for (int i = 0; i < result.points.length; i++) {
-      log('latitude: ${result.points[i].latitude}  longitude: ${result.points[i].longitude}');
+      log('this is a result ------------------------------------------------------ ${result.points.length}');
       _polyLinesCoordinates.value.add(LatLng(result.points[i].latitude, result.points[i].longitude));
     }
     _polyLinesCoordinates.refresh();

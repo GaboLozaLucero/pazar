@@ -68,7 +68,7 @@ class Pages {
     GetPage(
       name: Routes.storyMap,
       page: () => StoryMap(),
-      binding: StoryMapBinding(),
+      binding: MapBinding(),
     ),
     GetPage(
       name: Routes.profile,
