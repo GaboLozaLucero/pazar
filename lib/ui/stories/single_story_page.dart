@@ -4,11 +4,12 @@ import 'package:get/get.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
 import 'package:project/constants/text_styles.dart';
+import 'package:project/controllers/map_controller.dart';
 import 'package:project/controllers/single_story_controller.dart';
 import 'package:project/data/models/stories.dart';
 import 'package:project/navigation/pages.dart';
 import 'package:project/ui/widgets/appbar/custom_appbar.dart';
-
+import 'dart:developer';
 import 'package:project/ui/widgets/button/floating_story_button.dart';
 
 class SingleStoryPage extends GetView<SingleStoryController> {
@@ -44,6 +45,7 @@ class SingleStoryPage extends GetView<SingleStoryController> {
                       if (loadingProgress == null) return child;
                       return Center(
                         child: CircularProgressIndicator(
+                          color: ConstantColors.buttonColor,
                           value: loadingProgress.expectedTotalBytes != null
                               ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
                               : null,
@@ -131,7 +133,13 @@ class SingleStoryPage extends GetView<SingleStoryController> {
             ),
             FloatingStoryButton(
               iconData: Icons.camera_alt_outlined,
-              function: () {},
+              function: () async {
+                // Get.lazyPut<MapController>(() => MapController());
+                // final mapController = Get.find<MapController>();
+                // await mapController.getUserLocation();
+                // log('${mapController.locationPosition}');
+                Get.toNamed(Routes.storyAr, arguments: _story);
+              },
             ),
           ],
         ),

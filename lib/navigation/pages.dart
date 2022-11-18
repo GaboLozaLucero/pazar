@@ -6,6 +6,7 @@ import 'package:project/bindings/liked_places_binding.dart';
 import 'package:project/bindings/map_binding.dart';
 import 'package:project/bindings/single_story_binding.dart';
 import 'package:project/bindings/stories_binding.dart';
+import 'package:project/bindings/story_ar_binding.dart';
 import 'package:project/bindings/story_map_binding.dart';
 import 'package:project/ui/auth_page.dart';
 import 'package:project/ui/profile/liked_places_page.dart';
@@ -19,6 +20,7 @@ import 'package:project/ui/sign_up_page.dart';
 import 'package:project/ui/home_page.dart';
 import 'package:project/ui/stories/myths_page.dart';
 import 'package:project/ui/stories/single_story_page.dart';
+import 'package:project/ui/stories/story_ar/story_ar_page.dart';
 import 'package:project/ui/stories/story_map/story_map.dart';
 
 part './routes.dart';
@@ -88,6 +90,11 @@ class Pages {
       name: Routes.likedPlaces,
       page: () => LikedPlacesPage(),
       binding: LikedPlacesBinding(),
+    ),
+    GetPage(
+      name: Routes.storyAr,
+      page: () => StoryArPage(),
+      binding: StoryArBinding(),
     ),
   ];
 }

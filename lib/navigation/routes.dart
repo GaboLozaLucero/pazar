@@ -14,4 +14,5 @@ abstract class Routes {
   static const profileInformation = '/profile_information';
   static const profilePassword = '/profile_password';
   static const likedPlaces = '/liked_places';
+  static const storyAr = '/story_ar';
 }

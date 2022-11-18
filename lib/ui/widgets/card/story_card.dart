@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
 import 'package:project/constants/text_styles.dart';
 import 'package:project/data/models/stories.dart';
@@ -38,24 +39,26 @@ class StoryCard extends StatelessWidget {
               ),
               height: height * 0.15,
               width: double.infinity,
-              child: Stack(fit: StackFit.expand,
+              child: Stack(
+                fit: StackFit.expand,
                 children: [
                   ClipRRect(
-                      borderRadius: BorderRadius.circular(SizeForm.buttonRadius),
-                      child: Image.network(
-                        '${stories?[index].imageUrl}',
-                        fit: BoxFit.fill,
-                        loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Center(
-                            child: CircularProgressIndicator(
-                              value: loadingProgress.expectedTotalBytes != null
-                                  ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                                  : null,
-                            ),
-                          );
-                        },
-                      ),
+                    borderRadius: BorderRadius.circular(SizeForm.buttonRadius),
+                    child: Image.network(
+                      '${stories?[index].imageUrl}',
+                      fit: BoxFit.fill,
+                      loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return Center(
+                          child: CircularProgressIndicator(
+                            color: ConstantColors.buttonColor,
+                            value: loadingProgress.expectedTotalBytes != null
+                                ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
+                                : null,
+                          ),
+                        );
+                      },
+                    ),
                   ),
                   OutlinedButton(
                     style: ButtonStyle(

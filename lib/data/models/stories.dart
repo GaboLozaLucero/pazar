@@ -9,8 +9,9 @@ class Story {
   String? imageUrl;
   bool? active;
   String? type;
+  String? modelUrl;
 
-  Story({this.id, this.name, this.geoPoint, this.address, this.story, this.imageUrl, this.active, this.type});
+  Story({this.id, this.name, this.geoPoint, this.address, this.story, this.imageUrl, this.active, this.type, this.modelUrl});
 
   factory Story.fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot, SnapshotOptions? options) {
     final data = snapshot.data();
@@ -22,7 +23,8 @@ class Story {
         story: data?["story"],
         imageUrl: data?["image"],
         active: data?["active"],
-        type: data?["type"]);
+        type: data?["type"],
+        modelUrl: data?["model_url"]);
   }
 
   Map<String, dynamic> toFirestore() => {
@@ -34,11 +36,11 @@ class Story {
         if (imageUrl != null) "image": imageUrl,
         if (active != null) "active": active,
         if (type != null) "type": type,
+        if (modelUrl != null) "model_url": modelUrl,
       };
 
   @override
   String toString() {
-    return 'Story{id: $id, name: $name, geoPoint: $geoPoint, address: $address, story: $story, imageUrl: $imageUrl, active: '
-        '$active, type: $type}';
+    return 'Story{id: $id, name: $name, geoPoint: $geoPoint, address: $address, story: $story, imageUrl: $imageUrl, active: $active, type: $type, modelUrl: $modelUrl}';
   }
 }
