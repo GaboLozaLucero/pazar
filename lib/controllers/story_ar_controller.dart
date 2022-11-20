@@ -10,6 +10,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_archive/flutter_archive.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:project/data/models/stories.dart';
 import 'package:vector_math/vector_math_64.dart';
 
 class StoryArController extends GetxController{
@@ -23,6 +24,8 @@ class StoryArController extends GetxController{
   ARNode? webObjectNode;
   ARNode? fileSystemNode;
   HttpClient? httpClient;
+
+  final Story _story = Get.arguments;
 
   @override
   void dispose() {
@@ -92,7 +95,7 @@ class StoryArController extends GetxController{
     } else {
       var newNode = ARNode(
           type: NodeType.webGLB,
-          uri: "https://github.com/GaboLozaLucero/frontSoftware/raw/main/frontPC/person_hanging.glb",
+          uri: "${_story.modelUrl}",
           // uri: "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF-Binary/Duck.glb",
           scale: Vector3(0.2, 0.2, 0.2));
       bool? didAddWebNode = await arObjectManager?.addNode(newNode);

@@ -22,7 +22,7 @@ class LikedPlacesPage extends GetView<LikedPlacesController> {
         },
         builder: (controlling) {
           if (controlling.loading) {
-            return const CircularLoadingIndicator(text: 'Cargando mitos');
+            return const CircularLoadingIndicator(text: 'Cargando favoritos');
           }
           if (controller.listStories.isEmpty) {
             return Center(
