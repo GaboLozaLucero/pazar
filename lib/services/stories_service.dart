@@ -38,11 +38,39 @@ class StoriesService {
   Future<List<Story>?> retrieveStoriesByType(String type) async {
     try {
       //only retrieve stories that admin set as active
-      final storiesQuery = await _db
-          .collection(collectionPath)
-          .where('active', isEqualTo: true).where('type', isEqualTo: type)
-          .get();
-       // log('stories: ${storiesQuery.docs.map((story) => Story.fromFirestore(story, null)).toList()}');
+      final storiesQuery =
+          await _db.collection(collectionPath).where('active', isEqualTo: true).where('type', isEqualTo: type).get();
+      // log('stories: ${storiesQuery.docs.map((story) => Story.fromFirestore(story, null)).toList()}');
+      return storiesQuery.docs.map((story) => Story.fromFirestore(story, null)).toList();
+    } catch (e) {
+      log(e.toString());
+      return null;
+    }
+  }
+
+  Future addLike(Story story) async {
+    CloudFirestore.DocumentReference reference = _db.collection(collectionPath).doc(story.id);
+    try {
+      reference.update({"likes": CloudFirestore.FieldValue.increment(1)});
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future removeLike(Story story) async {
+    CloudFirestore.DocumentReference reference = _db.collection(collectionPath).doc(story.id);
+    try {
+      reference.update({"likes": CloudFirestore.FieldValue.increment(-1)});
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  Future<List<Story>?> topPopularStories() async {
+    try {
+      //only retrieve stories that admin set as active
+      final storiesQuery = await _db.collection(collectionPath).orderBy("likes", descending: true).limit(2).get();
+      // log('stories: ${storiesQuery.docs.map((story) => Story.fromFirestore(story, null)).toList()}');
       return storiesQuery.docs.map((story) => Story.fromFirestore(story, null)).toList();
     } catch (e) {
       log(e.toString());

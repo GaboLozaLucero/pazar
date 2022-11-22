@@ -130,6 +130,43 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: SizeForm.margin),
+                child: SizedBox(
+                  height: Get.height * 0.1,
+                  width: double.infinity,
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(SizeForm.buttonRadius),
+                      ),
+                      backgroundColor: ConstantColors.appBarBackgroundColor,
+                      side: const BorderSide(color: ConstantColors.legendIconColor, width: 2.0),
+                    ),
+                    onPressed: () {
+                      Get.toNamed(Routes.popularPlaces);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'lugares\npopulares'.toUpperCase(),
+                          style: profileButtons,
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(
+                          width: Get.width * 0.05,
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.05,
+                          child: Image.asset('./././assets/images/popular.png'),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),

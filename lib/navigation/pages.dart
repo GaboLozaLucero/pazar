@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 import 'package:project/bindings/auth_binding.dart';
 import 'package:project/bindings/liked_places_binding.dart';
 import 'package:project/bindings/map_binding.dart';
+import 'package:project/bindings/popular_places_binding.dart';
 import 'package:project/bindings/single_story_binding.dart';
 import 'package:project/bindings/stories_binding.dart';
 import 'package:project/bindings/story_ar_binding.dart';
 import 'package:project/bindings/story_map_binding.dart';
 import 'package:project/ui/auth_page.dart';
 import 'package:project/ui/profile/liked_places_page.dart';
+import 'package:project/ui/profile/popular_places/popular_places_page.dart';
 import 'package:project/ui/profile/profile_information/profile_information_page.dart';
 import 'package:project/ui/profile/profile_information/profile_password.dart';
 import 'package:project/ui/profile/profile_page.dart';
@@ -95,6 +97,11 @@ class Pages {
       name: Routes.storyAr,
       page: () => StoryArPage(),
       binding: StoryArBinding(),
+    ),
+    GetPage(
+      name: Routes.popularPlaces,
+      page: () => PopularPlacesPage(),
+      binding: PopularPlacesBinding(),
     ),
   ];
 }
