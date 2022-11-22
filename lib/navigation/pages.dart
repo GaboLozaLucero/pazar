@@ -10,7 +10,7 @@ import 'package:project/bindings/stories_binding.dart';
 import 'package:project/bindings/story_ar_binding.dart';
 import 'package:project/bindings/story_map_binding.dart';
 import 'package:project/ui/auth_page.dart';
-import 'package:project/ui/profile/liked_places_page.dart';
+import 'package:project/ui/profile/liked_places/liked_places_page.dart';
 import 'package:project/ui/profile/popular_places/popular_places_page.dart';
 import 'package:project/ui/profile/profile_information/profile_information_page.dart';
 import 'package:project/ui/profile/profile_information/profile_password.dart';

@@ -17,7 +17,7 @@ class StoryArPage extends GetView<StoryArController> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: const CustomAppbar(title: 'toca la pantalla'),
+        appBar: const CustomAppbar(title: ''),
         body: Stack(
           children: [
             ARView(
