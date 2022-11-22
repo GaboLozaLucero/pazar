@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/constants/size_form.dart';
 import 'package:project/constants/text_styles.dart';
@@ -11,11 +12,10 @@ import 'package:project/navigation/pages.dart';
 import 'package:project/ui/widgets/appbar/custom_appbar.dart';
 import 'dart:developer';
 import 'package:project/ui/widgets/button/floating_story_button.dart';
+import 'package:project/ui/widgets/dialog/error_dialog.dart';
 
 class SingleStoryPage extends GetView<SingleStoryController> {
-  SingleStoryPage({Key? key}) : super(key: key);
-
-  final Story _story = Get.arguments;
+  const SingleStoryPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class SingleStoryPage extends GetView<SingleStoryController> {
                 fit: StackFit.expand,
                 children: [
                   Image.network(
-                    '${_story.imageUrl}',
+                    '${controller.story.imageUrl}',
                     fit: BoxFit.fill,
                     loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
                       if (loadingProgress == null) return child;
@@ -64,7 +64,7 @@ class SingleStoryPage extends GetView<SingleStoryController> {
                           borderRadius: BorderRadius.circular(SizeForm.textBackgroundRadius),
                         ),
                         child: Text(
-                          '${_story.address}',
+                          '${controller.story.address}',
                           textAlign: TextAlign.right,
                           style: textInDescriptionCard,
                         ),
@@ -77,7 +77,7 @@ class SingleStoryPage extends GetView<SingleStoryController> {
             Padding(
               padding: const EdgeInsets.only(top: 10.0, bottom: 12.0, right: 2.0, left: 2.0),
               child: Text(
-                '${_story.name}',
+                '${controller.story.name}',
                 style: const TextStyle(
                   color: ConstantColors.textTitleStoryColor,
                   fontSize: SizeForm.textTitleSize,
@@ -93,7 +93,7 @@ class SingleStoryPage extends GetView<SingleStoryController> {
               child: AnimatedTextKit(
                 animatedTexts: [
                   TypewriterAnimatedText(
-                    '${_story.story}',
+                    '${controller.story.story}',
                     textStyle: const TextStyle(
                       fontSize: SizeForm.textStoriesSize,
                       height: 1.5,
@@ -116,33 +116,46 @@ class SingleStoryPage extends GetView<SingleStoryController> {
                 ? FloatingStoryButton(
                     iconData: Icons.thumb_up_off_alt_rounded,
                     function: () {
-                      controller.dislikeStory(_story);
+                      controller.dislikeStory();
                     },
                   )
                 : FloatingStoryButton(
                     iconData: Icons.thumb_up_alt_outlined,
                     function: () {
-                      controller.likeStory(_story);
+                      controller.likeStory();
                     },
                   )),
             FloatingStoryButton(
               iconData: Icons.map_outlined,
               function: () {
-                Get.toNamed(Routes.storyMap, arguments: _story);
+                Get.toNamed(Routes.storyMap, arguments: controller.story);
               },
             ),
             FloatingStoryButton(
               iconData: Icons.camera_alt_outlined,
               function: () async {
-                // Get.lazyPut<MapController>(() => MapController());
-                // final mapController = Get.find<MapController>();
-                // await mapController.getUserLocation();
-                // log('${mapController.locationPosition}');
-                Get.toNamed(Routes.storyAr, arguments: _story);
+                // if (await controller.checkCoordinates()) {
+                  Get.toNamed(Routes.storyAr, arguments: controller.story);
+                // } else {
+                //   notRange();
+                // }
               },
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  notRange() {
+    Get.dialog(
+      ErrorDialog(
+        title: 'Te encuentras lejos',
+        description: 'No estas en rango para ver la representación de la '
+            'historia',
+        function: () {
+          Get.back();
+        },
       ),
     );
   }

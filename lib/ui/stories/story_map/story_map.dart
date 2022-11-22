@@ -4,6 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/constants/constant_colors.dart';
 import 'package:project/controllers/map_controller.dart';
 import 'package:project/data/models/stories.dart';
+import 'package:project/navigation/pages.dart';
 import 'package:project/ui/widgets/appbar/custom_appbar.dart';
 import 'package:project/ui/widgets/button/custom_elevatedbutton.dart';
 import 'package:project/ui/widgets/button/floating_story_button.dart';
@@ -74,7 +75,9 @@ class StoryMap extends GetView<MapController> {
             ),
             FloatingStoryButton(
               iconData: Icons.camera_alt_outlined,
-              function: () {},
+              function: () {
+                Get.toNamed(Routes.storyAr, arguments: _story);
+              },
             ),
           ],
         ),

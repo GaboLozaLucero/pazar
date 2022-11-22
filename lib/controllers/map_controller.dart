@@ -48,6 +48,8 @@ class MapController extends GetxController {
   void onInit() async{
     _mapMarkerLegend.value = await getBytesFromAssets('./././assets/images/legend_image.png', 100);
     _mapMarkerMyth.value = await getBytesFromAssets('./././assets/images/myth_image.png', 100);
+    _polyLinesCoordinates.clear();
+
     update();
     super.onInit();
   }

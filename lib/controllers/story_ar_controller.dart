@@ -13,7 +13,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:project/data/models/stories.dart';
 import 'package:vector_math/vector_math_64.dart';
 
-class StoryArController extends GetxController{
+class StoryArController extends GetxController {
   ARSessionManager? arSessionManager;
   ARObjectManager? arObjectManager;
 
@@ -39,18 +39,19 @@ class StoryArController extends GetxController{
     this.arObjectManager = arObjectManager;
 
     this.arSessionManager!.onInitialize(
-      showFeaturePoints: false,
-      showPlanes: true,
-      customPlaneTexturePath: "Images/triangle.png",
-      showWorldOrigin: true,
-      handleTaps: false,
-    );
+          showFeaturePoints: false,
+          showPlanes: false,
+          customPlaneTexturePath: "Images/triangle.png",
+          showWorldOrigin: true,
+          handleTaps: false,
+          showAnimatedGuide: false,
+        );
     this.arObjectManager!.onInitialize();
 
     //Download model to file system
     httpClient = HttpClient();
 
-    _downloadFile("https://github.com/GaboLozaLucero/frontSoftware/raw/main/frontPC/pazar_models.glb", "pazar_models.glb");
+    // _downloadFile("https://github.com/GaboLozaLucero/frontSoftware/raw/main/frontPC/pazar_models.glb", "pazar_models.glb");
     // _downloadFile("https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF-Binary/Duck.glb", "LocalDuck.glb");
     // Alternative to use type fileSystemAppFolderGLTF2:
     // _downloadAndUnpack(
@@ -65,8 +66,9 @@ class StoryArController extends GetxController{
     String dir = (await getApplicationDocumentsDirectory()).path;
     File file = File('$dir/$filename');
     await file.writeAsBytes(bytes);
-    print("Downloading finished, path: " + '$dir/$filename '
-        '------------------------------------------++++++++++++++++++++++++++++++++++++');
+    print("Downloading finished, path: " +
+        '$dir/$filename '
+            '------------------------------------------++++++++++++++++++++++++++++++++++++');
     return file;
   }
 
