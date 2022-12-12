@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:geofence_service/geofence_service.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/constants/constant_colors.dart';
@@ -134,8 +135,11 @@ class SingleStoryPage extends GetView<SingleStoryController> {
             FloatingStoryButton(
               iconData: Icons.camera_alt_outlined,
               function: () async {
-                // if (await controller.checkCoordinates()) {
+                if (controller.geofenceStatus == GeofenceStatus.ENTER || controller.geofenceStatus == GeofenceStatus.DWELL) {
                   Get.toNamed(Routes.storyAr, arguments: controller.story);
+                } else {
+                  notRange();
+                }
                 // } else {
                 //   notRange();
                 // }
