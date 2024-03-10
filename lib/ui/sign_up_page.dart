@@ -114,11 +114,11 @@ class SignUpPage extends GetView<AuthController> {
             onPress: () {
               if (_formKey.currentState?.validate() == false) {
                 return;
+              } else if (_passwordController.text == _verifyPasswordController.text) {
+                _formKey.currentState?.save();
+                signUp();
               } else {
-                if (_passwordController.text == _verifyPasswordController.text) {
-                  _formKey.currentState?.save();
-                  signUp();
-                }
+                Snackbar.errorSnackbar('Error', 'Las contraseñas no coinciden');
                 return;
               }
             },

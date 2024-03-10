@@ -14,7 +14,7 @@ class PopularPlacesPage extends GetView<PopularPlacesController> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
-      appBar: CustomAppbar(title: ''),
+      appBar: const CustomAppbar(title: 'Populares'),
       body: GetX<PopularPlacesController>(
         initState: (state) async {
           await controller.retrievePopular();

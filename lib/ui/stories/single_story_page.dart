@@ -135,14 +135,12 @@ class SingleStoryPage extends GetView<SingleStoryController> {
             FloatingStoryButton(
               iconData: Icons.camera_alt_outlined,
               function: () async {
-                if (controller.geofenceStatus == GeofenceStatus.ENTER || controller.geofenceStatus == GeofenceStatus.DWELL) {
-                  Get.toNamed(Routes.storyAr, arguments: controller.story);
-                } else {
-                  notRange();
-                }
+                // if (controller.geofenceStatus == GeofenceStatus.ENTER || controller.geofenceStatus == GeofenceStatus.DWELL) {
+                //   Get.toNamed(Routes.storyAr, arguments: controller.story);
                 // } else {
                 //   notRange();
                 // }
+                Get.toNamed(Routes.storyAr, arguments: controller.story);
               },
             ),
           ],
