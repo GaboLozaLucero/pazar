@@ -10,6 +10,7 @@ import 'package:project/ui/auth_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,

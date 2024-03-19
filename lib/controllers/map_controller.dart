@@ -10,6 +10,7 @@ import 'package:location/location.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:project/data/models/stories.dart';
 import 'package:project/services/stories_service.dart';
+import  'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MapController extends GetxController {
   GoogleMapController? _googleMapController;
@@ -106,7 +107,7 @@ class MapController extends GetxController {
     PointLatLng origin = PointLatLng(locationPosition.latitude, locationPosition.longitude);
     PointLatLng destination = PointLatLng(tapped.latitude, tapped.longitude);
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      'AIzaSyDO2HmEOMlGgqFCfEqIALQY9Gk-Sl6TWWg', //TODO hide APIKEY
+      dotenv.env["GoogleMapsAPIKEY"]!,
       origin,
       destination,
       travelMode: TravelMode.walking,
